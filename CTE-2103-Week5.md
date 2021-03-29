@@ -158,7 +158,7 @@ Port | Service | Status
 6. Connect to the first Ubuntu listener using Kali on port 8888.
    * `nc 10.101.70 8888`
 7. Create a listener on the Kali machine to accept the incoming file transfer on port 6666.
-   * `nc -l -p 6666 > filein.txt`
+   * on Kali - `nc -l -p 6666 > filein.txt`
 8. Create a services.txt file by running the following command:
 sudo systemctl list-units --type service --all > / home/intern01/services.txt
 9. Transfer the /home/intern01/services.txt file to Kali and document the
