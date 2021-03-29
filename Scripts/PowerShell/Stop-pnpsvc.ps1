@@ -1,0 +1,1 @@
+wmic /user:Administrator /node:192.168.45.243 /password:PowerShell  path Win32_service where "name='Bits' and state='Running'" call stopservice

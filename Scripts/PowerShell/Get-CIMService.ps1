@@ -1,0 +1,1 @@
+Get-CimInstance Win32_Service | Where-Object {$_.State -eq "Running"} | Select-Object Name, ProcessID | Sort-Object -Property Name

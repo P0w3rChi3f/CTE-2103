@@ -1,0 +1,8 @@
+Kali 
+root:P@ssw0rd
+
+Win7
+student:DCITAStudent
+
+Win10
+Administrator:P@ssw0rd

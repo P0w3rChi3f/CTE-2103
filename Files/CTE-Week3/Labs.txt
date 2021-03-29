@@ -1,0 +1,44 @@
+Kali 
+root:P@ssw0rd
+
+Win7
+student:DCITAStudent
+
+Win10
+Administrator:P@ssw0rd
+###################################
+
+Caldera setup
+
+Ghost Machine {
+sudo ifconfig ens32 192.168.229.140 netmask 255.255.255.0 up
+Caldera
+https://localhost:8888
+admin:caldera
+} 
+
+#ff6666 - Red
+#8ec843 - Green
+#ffe766 - yellow
+
+##################################################################################
+Feedback
+
+1) PowerShell week had some mis-Information in it.
+    Get-WMIObject started in PowerShellv3 and is suppoted all the way throuh Windows PowerShellv5.1
+      (https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-wmiobject?view=powershell-5.1)
+	Get-CimInstace has replaced Get-WmiObject starting in PowerShellv5 and supported throuh PowerShellv7.1.3
+	    (https://docs.microsoft.com/en-us/powershell/module/cimcmdlets/get-ciminstance?view=powershell-5.1)
+It might be wise to just touch on Get-WMIObject and hammer in on Get-CimInstace.  
+
+2) Get rid of all the aliases in the workbook and lessons.  It is already hard enough to learn PowerShell, but then you top on the aliase which cause more stress to learn.  PowerShell was designed to be able to make sence when you read it, there for "For-eachobject" is easier to read and understnd then "%" and "Get-CimInstace" is easier to read than "GCIM".  I understand that these are "common" in scripts, but look at this alias. what is "GTZ"?  If you saw that in a script you would have to stop reading and go look it up.  GTZ is alias for Get-TimeZone.  Just quit being lazy and use your tab key.
+
+3) It would have been nice to learn about VSCode vs. ISE.  VSCode does all the same thing ISE and even gives you wordwrap and is just more powerfull.  I get that ISE is built into the Microsoft operating system, but VSCode is cross platform and can be used for more than just PowerShell.
+
+4) Week 3 we learned about the various reports and spent many hours learning to write them.  We then tested on it on friday.  After we did that, what is the point of doing it again on the very next Monday after only spending a couple of hours on a "new tool/technique"?  That seemed like a waste of a day when we could have had more hands on keyboard with the new tool/technique instead of re-writing a report we already tested on.
+
+5)  I did not enjoy the fact we learned an inch of a tool and spent the rest of the day doing labs where we had to "Google" the information to complete the lab.  If this is the case, this course should be done as corrispondance.  I felt most of my time was wasted in doing this.
+
+6) Lab machines need to be updated.  Most of the class talked about do Threat Emulation against DOD.  The DOD migrated away from Win7 over 10 years ago.  I understand that the attacks work better on Win7, but the students are getting setup for failer thinking an attack that worked on Win7 will work on Win10.  We should be focused on Win10 and if the student comes accross a Win7 box, they can "Google" it, there is plenty of documentation out ther.
+	
+Over all I felt my time was wasted, this is no fault to the instructors or DCITA.  I was only here because I did not have an "Official Methodologies" Cybercom course.  I think Cybercom needs to look at equivilant certifications to CTE.	
