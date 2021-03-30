@@ -1,12 +1,20 @@
 # CTE - Week 5
 
+___
+
 ## Classroom Links
+
+___
 
 * [Teams](https://teams.microsoft.com/l/team/19%3a7a166f374eb44c89bb972a20cf5a3d6e%40thread.tacv2/conversations?groupId=b0216bab-7ebb-498b-af22-3d7c8db2d92f&tenantId=37247798-f42c-42fd-8a37-d49c7128d36b)  
 * [CLME](https://learn.dcita.edu/)
 * [CTE_TTPs_Lab_Manual_CTA_1901](.\Files\CTE_TTPs_Lab_Manual_CTA_1901.pdf)
 
+___
+
 ## Module 2 — Lesson 6: File Transfer
+
+___
 
 ### Transferring Files
 
@@ -100,7 +108,11 @@ Network File System | NFS | TCP / UDP 2049, 111
 * The following example is provided for the upx.exe program to create a UPX-compressed executable
   * `upx.exe -o <Outfile> -<0-9> <Input File>`
 
+___
+
 ## Exersise - Module 2, Lesson 7 – File Transfers
+
+___
 
 ### Scenario 1
 
@@ -205,7 +217,11 @@ b. Copy to the clipboard by pressing \<CTRL> + C
 7. Cleanup.
 8. Tear down communications.
 
+___
+
 ## Module 2 Lesson 7: Tunneling
+
+___
 
 ### Network Engineering Blues
 
@@ -433,7 +449,11 @@ b. Copy to the clipboard by pressing \<CTRL> + C
   * `... <CTRL> + <c>`
   * `[root@localhost ~]#`
 
+___
+
 ## Exersise - Module 2, Lesson 7 – Tunneling and Data Exfiltration
+
+___
 
 ### Senario 1
 
@@ -497,3 +517,116 @@ NOTE: Once you are logged into the FTP server, use the quote \<ftp command> para
 `quote port 10,10,1,70,211,181`
 `get sshd_config`
 6. Clean up.  
+
+___
+
+## Module 2 Lesson 8: Logs and Redirection
+
+___
+
+### UNIX System Log Files
+
+* Logs can be modified/wiped easily
+* Easy to Modify/Wipe Logs
+  * `/var/adm` - Solaris
+  * `/var/log` - Linux
+  * `~/.bash_histor`
+* Syslog
+  * Configurable logging service
+  * Configured via `/etc/rsyslog.conf` - Solaris
+  * configured via `/etc/syslog.conf` - Linux
+* The syslog servie can be configured to first write to the local system, after logs are written locally, logs are then forwarded to a remote syslog server based on the configuration file
+
+### Sample UNIX Log Entries
+
+* Very Secure FTP log file  
+![Secure FTP](./Files/CTE-Week4/Images/Lesson8/SecureFTP.jpg)
+* `/var/log/secure`  
+![Secure FTP](./Files/CTE-Week4/Images/Lesson8/var-log-secure.png)  
+
+### Windows Event Logs  
+
+* Simple actions use countless components that are logged and produce a significant amount of auditable information
+* Event logs can be useful in determining cause and effect during an investigation
+* Event log timestamps are recorded in GMT
+* When the system displays the event logs, the timestamp is adjusted for the computer's time zone
+* Implemented since Vista and Server 2008
+* Provided new features and enhancements from the previous .evt format
+* The use of channels
+  * Serviced
+  * Direct
+* XML Formatted
+
+### Windows .evtx Channels
+
+* Admin
+  * Used by IT Professionals
+  * Disabled by default
+  * Produces high volume of event; not user-friendly
+* Operational
+  * Used for analyzing and diagnosing a problem or occurrence
+  * Example: An event that occurs when a printer is added or removed from a system
+* Analytic
+  * Events published in high volume
+  * Indicate problems that canot be handled by user interventions
+* Debug
+  * Used by developers to troubleshoot issues with programs
+
+### Policy Assessment Overview
+
+* There are three types of logs:
+  * Application
+    * Events from local applications
+  * Security
+    * Events from LSASS.exe and audit policy
+  * System
+    * Events from operating system
+* Examples of event log entries:
+  * `System/Application`
+    * Error/Warning/Information
+  * `Security`
+    * Success Audit/Failure Audit
+
+### Windows Event Logs: Vista+
+
+* Microsoft rewrote their event logging in Vista:
+  * Now XML-based
+  * Allows for centralized logging by default 
+* Event Collector/Event Subscriber allows events to be sent between hosts as XML
+
+Windows Remote Manager (Winrm) 1.1 and earlier | Default ports: HTTP/Port 80 or HTTPS/Port 443
+---|---
+Winrm 2.x | Default ports: HTTP/Port 5985 or HTTPS/Port 5985
+
+### Event Log Categories: Vista+
+
+* Forward Log
+  * Events forwarded to another system are logged in the forward log
+  * Accomplished using event subscriptions
+    * Event subscriptions identify what events are collected
+    * Winrm listens and receives events  
+* Application and Service Logs
+  * Logs for the programs running on a system
+  * Logs pertaining to Windows services
+* Setup Logs
+  * Events on computers configured as domain controllers
+  * Client machine setup logs
+
+### Application Logs
+
+* Not reliable due to their non-standardization
+* Combined with system events, these events can show symptoms of suspected intrusions
+* Events relevant to an investigation:
+  * Application errors
+  * Antivirus or malware detection events
+  * Host-based firewall logs
+* Webservers
+  * `/var/log/httpd/`
+  * `%SYSTEMROOT\system32\logfiles\W3SVC#\*.log`
+* Security Products
+  * `C:\Program Files <product name>`
+  * `C:\Documents and Settings\All Users\Application`
+  * `C:\Documents and Settings\<user name>\Application Data`
+* Other Applications
+  * Instand Messengers/Chat programs
+  * Windows Scheduler Service
