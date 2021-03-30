@@ -439,7 +439,7 @@ b. Copy to the clipboard by pressing \<CTRL> + C
 
 1. Draw a diagram of the tunnels that will be created. Indicate the client connection created by the beacon on the diagram and document the command used to set up the netcat listener that will receive the communications.
 
-![Exersise Diagram](./Files/CTE-Week4/Images/tunnelexersise.png)
+![Exersise Diagram](./Files/CTE-Week4/Images/TunnelExercise.png)
 
 2. Set up the netcat listener.  
   On Win10 - `nc -l -p 6677`  
