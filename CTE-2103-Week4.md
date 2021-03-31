@@ -6,7 +6,11 @@
 * [CLME](https://learn.dcita.edu/)
 * [CTE_TTPs_Lab_Manual_CTA_1901](.\Files\CTE_TTPs_Lab_Manual_CTA_1901.pdf)
 
-## Module 2 — Lesson 1: Passive Reconnaissance
+___
+
+## Lesson - Module 2 — Lesson 1: Passive Reconnaissance
+
+___
 
 ### Lesson Overview - Reconnaissance
 
@@ -114,7 +118,7 @@
 ### nslookup
 
 * Identifies:
-  * Local DNS server • Non-authoritative DNS server
+  * Local DNS server   * Non-authoritative DNS server
   * Mail servers (mx)
   * DNS servers (ns)
   * Start of Authority (soa)
@@ -149,7 +153,7 @@
 nslookup | host | dig
 --- | --- | ---
 First tool for querying DNS | Does the domain exist or resolve to an address? | Used for probing the DNS
-CLI for interacting with the DNS | Searching for simple DNS record type | Produces multiline output 
+CLI for interacting with the DNS | Searching for simple DNS record type | Produces multiline output
 Difficult to script | | More comprehensive answer than host
 ___
 
@@ -276,6 +280,22 @@ Source) information
   * AlientVault OTX
   * Robtex
 
+### Lesson Summary
+
+* In this lesson we learned about:
+  * The phases of reconnaissance
+  * Categories of information
+    * People
+    * Infrastructure
+  * Open source reconnaissance tools
+    * Native OS Tools
+    * Robtex
+    * Maltego
+    * Metagoofil
+    * theHarvester
+    * Recon-ng
+    * ThreatMiner
+
 ___  
 
 ## Exercise - Module 2, Lesson 1 – Conducting Passive Reconnaissance  
@@ -289,7 +309,7 @@ ___
 * Possible vulnerabilities
 * Avenues of approach that could be used in later stages of an attack  
 
-#### dcita.com  
+### dcita.com  
 
 * AWS Site
 * whois  
@@ -304,7 +324,7 @@ ___
   * No New info
 * Shodan  
   * No Results by name
-  * ![Shodan Results](./Files/CTE-Week4/ExersizeFiles/PassiveRecon/dicita-com-Shodan-Results.png)  
+  * ![Shodan Results](./Files/Images/Lesson1/dicita-com-Shodan-Results.png)  
     * IIS 8.5
     * Port 80
 * Maltego
@@ -334,7 +354,7 @@ ___
   * DNS IP - 214.3.152.70
   * IPInfo - AS385 - af.mil
 
-#### dcita.edu  
+### dcita.edu  
 
 * whois  
   * Avenues of approach that could be used in later stages of an attack
@@ -347,7 +367,7 @@ ___
   * No New info
 * Shodan  
   * No Results by name
-  * ![Shodan Results](./Files/CTE-Week4/ExersizeFiles/PassiveRecon/dicita-edu-Shodan-Results.png)  
+  * ![Shodan Results](./Files/Images/Lesson1/dicita-edu-Shodan-Results.png)  
     * nginx  
     * Port 443
     * bootstrap; google tag manager; gsap; jquery; jquery UI  
@@ -357,7 +377,11 @@ ___
 * Recon-ng
 * ThreatMiner  
 
-## Active Scanning
+___
+
+## Lesson - Module 2, Lesson 2: Active Scanning and Enumeration
+
+___
 
 ### Acitive Scanning and Enumeration
 
@@ -386,15 +410,15 @@ ___
 ### Major Protocols Review
 
 * Ethernet
-![Ethernet_Header](./Files/CTE-Week4/ExersizeFiles/ActiveRecon/EthernetHeader.png)
+  ![Ethernet_Header](./Files/Images/Lesson2/EthernetHeader.png)
 * IPv4
-![IPv4_Header](./Files/CTE-Week4/ExersizeFiles/ActiveRecon/IPv4Header.png)
+  ![IPv4_Header](./Files/Images/Lesson2/IPv4Header.png)
 * ICMP
-![ICMP_Header](./Files/CTE-Week4/ExersizeFiles/ActiveRecon/ICMPHeader.png)
+  ![ICMP_Header](./Files/Images/Lesson2/ICMPHeader.png)
 * TCP
-![TCP_Header](./Files/CTE-Week4/ExersizeFiles/ActiveRecon/TCPHeader.png)
+  ![TCP_Header](./Files/Images/Lesson2/TCPHeader.png)
 * UDP
-![UDP_Header](./Files/CTE-Week4/ExersizeFiles/ActiveRecon/UDPHeader.png)
+  ![UDP_Header](./Files/Images/Lesson2/UDPHeader.png)
 
 ### Active Scanning Techniques
 
@@ -433,8 +457,22 @@ ___
   * Replay packets
 * Important concepts
 * Crafting packets
-  ![Scapy](./Files/CTE-Week4/ExersizeFiles/ActiveRecon/Scapy.png)
+  ![Scapy](./Files/Images/Lesson2/Scapy.png)
 * Sending and receiving packets
+  * Sending packets is easy
+   ![Sending Packets](./Files/Images/Lesson2/scapysend1.png)
+  * Or you could use:
+   ![Sending Packets](./Files/Images/Lesson2/scapysend2.png)
+
+### Sending and Receiving Packets
+
+* Functions:
+  * Send and Receive
+    * sr()
+  * Send and Receive one packet
+    * sr1()
+
+  ![Scapy](./Files/Images/Lesson2/Scapy.png)
 
 ### NMAP
 
@@ -448,20 +486,223 @@ ___
   * Identifying open ports
   * Security Auditing
 * Graphical User Interface (Zenmap)
-* NMAP Options
-  * Discovery Options
-    * List scan (-sL)
-    * No port scan (-sn)
-    * No Ping (-Pn)
-    * TCP SYN ping (-PS)
-    * TCP ACK ping (-PA)
-    * UDP Ping (-PU)
-    * SCTP INIT ping (-PY)
-    * ICMP Ping Types (-PE; -PP; -PM)
-    * IP protocol ping (-PO)
-    * ARP ping (-PR)
+  ![Zenmap](./Files/Images/Lesson2/zenmap.png)
+* Command Line:
+  ![Nmap](./Files/Images/Lesson2/nmap.png)
 
-### Exersises
+### NMAP Options
+
+  ![Nmap](./Files/Images/Lesson2/nmap2.png)
+
+### Mapping the Environment— Discovering Hosts
+
+* Discovery Options
+  * List scan (-sL)
+  * No port scan (-sn)
+  * No Ping (-Pn)
+  * TCP SYN ping (-PS)
+  * TCP ACK ping (-PA)
+  * UDP Ping (-PU)
+  * SCTP INIT ping (-PY)
+  * ICMP Ping Types (-PE; -PP; -PM)
+  * IP protocol ping (-PO)
+  * ARP ping (-PR)
+
+### Mapping the Environment - Outputting Results
+
+![Nmap](./Files/Images/Lesson2/nmap3.png)
+
+### Mapping the Environment— Port Scanning
+
+Option | Scan Type
+--- | ---
+-sP | Ping scan only
+-sS | TCP SYN
+-sT | TCP Connect
+-sA | TCP ACK
+-sN / -sF / -sX | TCP NULL, FIN, and Xmas
+-sW | TCP window
+-sM | TCP Miamon
+-sU | UDP
+-sI | Idle
+-b | FTP bounce
+-sO | IP protocol
+
+### OS Fingerprinting and Version Detection
+
+* OS DETECTION:
+  * -O: Enable OS detection
+  * --osscan-limit: Limit OS detection to promising targets
+  * --osscan-guess: Guess OS more aggressively
+* SERVICE/VERSION DETECTION:
+  * -sV: Probe open ports to determine service/ version info
+  * --version-intensity \<level>: Set from 0 (light) to 9 (try all probes)
+  * --version-light: Limit to most likely probes (intensity 2)
+  * --version-all: Try every single probe (intensity 9)
+  * --version-trace: Show detailed version scan activity (for debugging)
+
+### Nmap Scripting Engine (NSE)
+
+* Automates networking tasks
+  * Network discovery
+  * More sophisticated version detection
+  * Vulnerability detection
+  * Backdoor detection
+  * Vulnerability exploitation
+* Types of Scripts:
+  * Prerule
+  * Host
+  * Service
+  * Postrule
+* Categories
+  * Auth
+  * Broadcast
+  * Brute
+  * Default
+  * Discovery
+  * DOS
+  * Exploit
+  * External
+  * Fuzzer
+  * Intrusive
+  * Malware
+  * Safe
+  * Version
+  * Vuln
+
+### Using Nmap Scripting Engine (NSE)
+
+  ![Nmap](./Files/Images/Lesson2/nmap4.png)
+
+* Selecting scripts
+  * locate *.nse
+  * find / -name "*.nse"
+* Performing Script Scans
+  * SCRIPT SCAN:
+    * -sc: equivalent to --script=default
+    * --scripts>=\<Lua scripts>: \<Lua scripts> is a comma separated list of directories, script-files or script-categories
+    * --scritp-arg=<n1=v1,[n2=v2,...]>: provide arguments to scripts
+    * --script-args-file=fitename: provide NSE script args in a file
+    * --script-trace: Show all data sent and received
+    * --script-updatedb: Update the script database.
+    * --script-help=\<Lua scripts>: Show help about scripts \<Lua scripts> is a comma-separated list of script-files or script-categories .
+
+### Ncat
+
+![ncat](./Files/Images/Lesson2/ncat.png)
+
+* Usage: `ncat [options) [hostname] [port]`
+* Options taking a time assume seconds. Append i ms ' for milliseconds, 's' for seconds, 'm' for minutes, or 'h' for hours (e.g. 500ms) .
+  * -4 Use IPv4 only
+  * -6 Use IPv6 only
+  * -U, --unixsock Use Unix domain sockets only
+  * -C, --crtf Use CRLF for EOL sequence
+  * -c, --sh-exec \<command> Executes the given command via /bin/sh
+  * -e, --exec \<command> Executes the given command
+  * --lua-exec Executes the given Lua script
+  * -g hopl[,hop2, . . ] Loose source routing hop points (8 max)
+
+### Nping
+
+  ![Nping](./Files/Images/Lesson2/nping.png)
+
+* Use `man nping` to find syntax examples
+  ![Nping](./Files/Images/Lesson2/nping2.png)
+  ![Nping](./Files/Images/Lesson2/nping3.png)
+
+### Ndiff
+
+  ![NDIFF](./Files/Images/Lesson2/ndiff.png)
+
+### Evasion Techniques
+
+* Customizing TCP scan flag (--scan-flags)
+* Fragmentation (-f / --mtu)
+* Adding decoy IP addresses (-D)
+* Idle Scan (-sl)
+* Changing the Source port (-g)
+* Spoofing IP (-S) and MAC address (--spoof-mac)
+* Randomize target scan order (--randomize-hosts)
+* Add random data to packets (--data-length)
+* Manipulating the time-to-live field (--ttl)
+* Send packets with bogus TCP or UDP checksums (--badsums)
+* Firewalk (--script firewalk)
+  ![Evasion Technique](./Files/Images/Lesson2/evasion1.png)
+  ![Evasion Technique](./Files/Images/Lesson2/evasion2.png)
+
+### OpenVAS
+
+* Open source vulnerability scanner
+* It's free!
+* Over 50,000 network vulnerability tests
+* Identifies vulnerabilities - Does not fix them
+* Allows customized:
+  * Targets
+  * Scans
+  * Depth of scans, and scan regions
+  * Reports
+
+### OpenVAS — Accessing the Web Interface
+
+  ![OpenVAS](./Files/Images/Lesson2/openvas1.png)
+
+### OpenVAS - Configuring a Scan
+
+  ![OpenVAS](./Files/Images/Lesson2/openvas2.png)
+
+### OpenVAS — Adding Targets
+
+  ![OpenVAS](./Files/Images/Lesson2/openvas3.png)
+  ![OpenVAS](./Files/Images/Lesson2/openvas4.png)
+
+### OpenVAS — Adding Credentials
+
+  ![OpenVAS](./Files/Images/Lesson2/openvas5.png)
+
+### OpenVAS — Changing the Network Vulnerability Tests (NVTs)
+
+  ![OpenVAS](./Files/Images/Lesson2/openvas6.png)
+
+### OpenVAS — Reviewing Scan Results
+
+  ![OpenVAS](./Files/Images/Lesson2/openvas7.png)
+  ![OpenVAS](./Files/Images/Lesson2/openvas8.png)
+  
+### Nessus — Accessing
+
+  ![Nessus](./Files/Images/Lesson2/nessus1.png)
+
+### Nessus — Configuring a Scan
+
+![Nessus](./Files/Images/Lesson2/nessus2.png)
+![Nessus](./Files/Images/Lesson2/nessus3.png)
+  
+### Nessus — Launching a Scan
+
+  ![Nessus](./Files/Images/Lesson2/nessus4.png)
+
+### Nessus — Reviewing Scan Results
+
+![Nessus](./Files/Images/Lesson2/nessus5.png)
+![Nessus](./Files/Images/Lesson2/nessus6.png)
+![Nessus](./Files/Images/Lesson2/nessus7.png)
+
+### Lesson Summary
+
+* In this lesson we learned about:
+  * Preparing custom packets for scanning
+  * Using Nmap scans to target ports, detect services, versions of operating systems and applications on a remote host and interpret the results
+  * Using available scripts to automate networking tasks (such as identifying vulnerabilities, testing controls and detecting backdoors)
+  * Using Nmap utilities (ncat, ndiff or nping) to analyze a network, generate network packets, connect to other hosts, or compare existing scans
+  * Performing suitable Nmap scans designed to evade the basic rules of firewalls or Intrusion detection systems
+  * Completing a vulnerability scan using Nessus and OpenVAS
+  * Assessing the vulnerability risks to a system and assemble results for inclusion in reporting
+
+___
+
+## Exercise - Module 2, Lesson 2 – Discovery Scanning and Enumerating Hosts
+
+___
 
 * Scapy  
 
@@ -484,6 +725,10 @@ packet[TCP].dport = 135,445,80
   * Download and copy script to `/usr/share/nmap/
 scripts` or `/usr/local/share/nmap/scripts`
   * Copy any libraries (`.lua files`) to the `nselib folder`
+
+## Exercise - Module 2, Lesson 2 – Advanced Scanning and Evasion Techniques
+
+## Exercise - Module 2, Lesson 2 – Vulnerability Scanning
 
 ## Exercise - Module 2, Lesson 4 – Exploiting Windows with Metasploit
 
