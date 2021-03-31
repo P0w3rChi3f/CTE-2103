@@ -305,6 +305,53 @@ scripts` or `/usr/local/share/nmap/scripts`
 36. run post/windows/gather/enum_applications
 37. run post/windows/gather/enum_prefetch
 
+## Module 2 — Lesson 5: Metasploit, Part 2
+
+### Msfvenom
+
+* Msfvenom is a combination of Msfpayload and Msfencode and replaced  both tools in 2015.
+* Msfpayload was capable of generating all the different types of shellcode available to Metasploit, and Msfencode is used to craft shellcode to specific targets. Additionally, it can encode shellcode multiple times and output the encoding results in numerous formats(i.e. Perl, C, Ruby).
+* Msfvenom improves by combining the previously mentioned, simplifying operations and increasing speeds.
+
+## Metasploit Venom
+
+* Used to generate shellcode
+* Launched with msfvenom
+* Several options for encoders
+* An update and consolidation of the tools: msfencode and msfpayload
+* Built in support for Microsoft Office documents
+
+## Msfvenom Options
+
+Option | Description
+--- | ---
+-p | Payload to use
+--payload-options | List the payload's standard options
+-I [type] | List a module type. Options include: payloads, encoders, nops, or all
+-n [length] | Prepend a nopsled of [length] size on to the payload
+-f | Output format
+--help-formats | Lit available formats
+-e | The encoder to use
+-a | The architecture to use
+--platform | The platfor of the payload
+--help-platforms | List available platforms
+-s [size in bytes] | The maximum siz of the resulting payload
+-b [x00 x01 ...] | The list of characters to avoid
+-i [number] | The number of times to encode the payload
+-c [input file] | Specify and additional win32 shellcode file to include
+-x [input file] | Specify a custom executable file to use as a template
+-o [output file] | Save the payload
+-v | Specify a custom variable named to use for certain output formats
+--smallest | Generate the smallest possible payload
+
+___
+
+### Msfvenom: Selecting options
+
+* The most efficient way to search for the available options in terms of **payloads, platforms, encoders, nops, archs, encrypt, and formats** will be through the use `--list <option>` method.
+
+![msfvenom options](./Files/Images/Lesson5/msfvenom-options.jpg)
+
 ## Metasploit Exersise II
 
 1. Using the Metasploit Venom payload generator and the 64-bit version of
