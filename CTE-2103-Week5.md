@@ -12,7 +12,7 @@ ___
 
 ___
 
-## Module 2 — Lesson 6: File Transfer
+## Lesson - Module 2 — Lesson 6: File Transfer
 
 ___
 
@@ -110,7 +110,7 @@ Network File System | NFS | TCP / UDP 2049, 111
 
 ___
 
-## Exercise - Module 2, Lesson 7 – File Transfers
+## Exercise - Module 2, Lesson 6 – File Transfers
 
 ___
 
@@ -219,7 +219,7 @@ b. Copy to the clipboard by pressing \<CTRL> + C
 
 ___
 
-## Module 2 Lesson 7: Tunneling
+## Lesson - Module 2 Lesson 7: Tunneling
 
 ___
 
@@ -520,7 +520,7 @@ NOTE: Once you are logged into the FTP server, use the quote \<ftp command> para
 
 ___
 
-## Module 2 Lesson 8: Logs and Redirection
+## Lesson - Module 2 Lesson 8: Logs and Redirection
 
 ___
 
