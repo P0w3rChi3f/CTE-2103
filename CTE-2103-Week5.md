@@ -108,6 +108,12 @@ Network File System | NFS | TCP / UDP 2049, 111
 * The following example is provided for the upx.exe program to create a UPX-compressed executable
   * `upx.exe -o <Outfile> -<0-9> <Input File>`
 
+### Lesson 6 Summary
+
+* One of an attacker's primary goals upon gaining entry to a targeted network is to establish a foothold and further the scope of the attack
+* Tunneling and redirection permit an attacker to form channels of communication that would otherwise be impossible given existing infrastructure and setup
+* Network defenders must understand these tools, tactics and procedures to gain a tactical advantage against attackers and prevent loss of critical data
+
 ___
 
 ## Exercise - Module 2, Lesson 6 – File Transfers
@@ -155,7 +161,7 @@ ___
 
 2. If a web port is open, what is the port number?
    * `80`
-3. Use netcat on the Kali machine to connect to the target. Once the connection is made, retrieve the target’s banner. 
+3. Use netcat on the Kali machine to connect to the target. Once the connection is made, retrieve the target’s banner.
    * `echo "" | nc -v -n -w1 10.10.1.70 2-90`
    * 80 - Server: Apache/2.4.18 (Ubuntu)
    * 22 - SSH-2.0.OpenSSH_7.2p2 Ubuntu-4ubuntu2.2
@@ -449,6 +455,12 @@ ___
   * `... <CTRL> + <c>`
   * `[root@localhost ~]#`
 
+### Lesson 7 Summary
+
+* From both a defensive and offensive perspective, SSH tunnels provide users with the assurance that their end-to-end communications are secure in a potentially hostile environment
+* Attackers use secure tunneling to hide, obscure and redirect their traffic, subverting the security of existing infrastructure
+* Network defenders must be familiar with the use and application of secure tunnels to counter network attacks and to detect and trace the origin of intrusions
+
 ___
 
 ## Exercise - Module 2, Lesson 7 – Tunneling and Data Exfiltration
@@ -459,7 +471,7 @@ ___
 
 1. Draw a diagram of the tunnels that will be created. Indicate the client connection created by the beacon on the diagram and document the command used to set up the netcat listener that will receive the communications.
 
-![Exercise Diagram](./Files/Images/TunnelExercise.png)
+    ![Exercise Diagram](./Files/Images/TunnelExercise.png)
 
 2. Set up the netcat listener.  
   On Win10 - `nc -l -p 6677`  
@@ -591,7 +603,7 @@ ___
 
 * Microsoft rewrote their event logging in Vista:
   * Now XML-based
-  * Allows for centralized logging by default 
+  * Allows for centralized logging by default
 * Event Collector/Event Subscriber allows events to be sent between hosts as XML
 
 Windows Remote Manager (Winrm) 1.1 and earlier | Default ports: HTTP/Port 80 or HTTPS/Port 443
@@ -976,6 +988,13 @@ msf exploit(ms08_067_netapi) > exploit
 * Meterpreter box is still listening on 11111 (forward SSH tunnel).
 * Jump poin is still listening (as well as conneted) on 80 (Reverse SSH) tunnel
 * `ssh root@10.20.30.40 -L11111:20.30.40.50:445 -R 80:127.0.0.1:`
+
+### Lesson 8 Summary
+
+* Logs are a key source for forensic operators
+* Locating and reviewing logs, as well as redirection are important to understand to maintain obfuscation during and after an operation
+
+___
 
 ## Exercise Module 2, Lesson 8 – Threat Emulation Actions in Logs
 
