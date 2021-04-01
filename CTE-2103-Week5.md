@@ -1368,7 +1368,111 @@ Escape Sequence | Output
   ![Dictionary](./Files/Images/Lesson9/dict1.png)
 * Manipulating dictionaries
 * No duplicate keys; assigning a value replaces the previous one
-![Dictionary](./Files/Images/Lesson9/dict2.png)
+  ![Dictionary](./Files/Images/Lesson9/dict2.png)
+
+### Conditionals
+
+* If this is true then do this
+* Determin the truthiness of something
+* if statements
+* else statements
+
+Operator | Meaning | Example
+--- | --- | ---
+`==` | Equals | a == b
+`!=` | Not Equals | a != b
+`<` | Less than | a < b
+`<=` | Less than or equal to | a <= b
+`>` | Greater than | a > b
+`>=` | Greater than or equal to | a >= b
+`is` | Identical object | a is b
+`is not` | Not identical object | a is not b
+
+* Code Blocks
+  * Denoted with a colon
+  * Denoted with indentation
+  * Whitespace matters
+  ![Conditionals](./Files/Images/Lesson9/conditionals.png)
+
+### Iteratation
+
+* Being able to interate (repeat) through objects
+* __iter__()
+![Iterators](./Files/Images/Lesson9/iter1.png)
+![Iterators](./Files/Images/Lesson9/iter2.png)
+
+### Iteratation: for loops
+
+![Iterators](./Files/Images/Lesson9/iter3.png)
+
+```python
+houses = ("stark", "lannister", "baratheon")
+for house in houses:
+  print(house)
+```
+
+* The variable `house` will first point to the value start and the interate throught each proceeding value
+* `house` becomes the variable.  This word is arbitrary, but often will be relatd to the item being iterated through
+* The `print` command will sequentially reference eachitem in the range
+* When the loop completes, Python does't clean up after itself and the last value passed thorught the variable remains.
+
+### Iteration: in statement
+
+* The in statement can be used to check membership
+![Iterators](./Files/Images/Lesson9/iter4.png)
+
+### Iteration: while statement
+
+* loops over block of code while condition holds
+* the condition can evaluate to True or False
+![Iterators](./Files/Images/Lesson9/iter5.png)
+
+### Iteration: break
+
+* To break out of a loop, use the keywork break
+![Iterators](./Files/Images/Lesson9/iter6.png)
+
+### Funcions
+
+* The key components of a function are:
+  * the def keyword (def defines that a function is being created)
+  * a function name (PEP8 says keep it lowercase, use underscores between words, can't be a key word, don't start with a number, don't override built-ins)
+  * function parameters parentheses (Any input parameters or arguments should be placed within these parentheses)
+  * a colon (:)
+  * code blocks (white space matters)
+  * a docstring (optional)
+  * a return statement (implied if not explicit)
+
+![Functions](./Files/Images/Lesson9/func.png)
+
+### Functions: Docstrings and help()
+
+* After a docstring is written in a function, help() can be used to see what the author provided for the docstring of the function.
+![Functions](./Files/Images/Lesson9/func2.png)
+
+### Functions: Scope
+
+![Functions](./Files/Images/Lesson9/func3.png)
+
+### Staring a Script
+
+![Functions](./Files/Images/Lesson9/func4.png)
+
+### Resources
+
+* For additional information on and practice with using Python, explore the following suggested resources:
+  * "Illustrated Guide to Python 3" by Matt Harrison
+  * Michael Kennedy https://blog.michaelckennedy.net/category/python/
+  * "Effective Python Penetration Testing" by Rejah Rehim
+  * "Violent Python" by TJ. O'Connor
+  * Contributors to https://www.w3schools.com
+  * "Python Tricks The Book" by Dan Bader   https://python.org
+
+### Lesson 9 Summary
+
+* In this lesson we learned how to:
+  * Manipulate variables, strings, lists, dictionaries, conditionals, loops, and functions in Python
+  * Create variables, strings, lists, dictionaries, conditionals, loops, and functions in Python
 
 ___
 
@@ -1378,7 +1482,13 @@ ___
 
 [Module 2, Lesson 9 – Python Refresher I](./Scripts/Python/Mod2L9-Refresher1.py)
 
+___
 
+## Exercise - Module 2, Lesson 9 – Python Refresher I
+
+___
+
+[Module 2, Lesson 9 – Python Refresher II](./Scripts/Python/Mod2L9-Refresher2.py)
 
 
 
