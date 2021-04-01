@@ -1016,17 +1016,31 @@ ___
 `multicommand cl "wevtutil qe Securithy /rd:true /f:text /q\"Event[System[(EventID=4624)]]""`
 
 1. Log in to the jump point to identify and remove any log entries relating specifically to SSH connections the attack machine makes.
+`ssh root@<cenOS IP>`
 2. Before opening any log files, run the file command against the log file to determine if it is ASCII text and therefore human readable.
+`script exercise1.txt`
 3. Log in to the Kali machine and SSH into the jump point machine.
+`cd /var/log`
 4. Execute the command that will record the information resulting from the session created from the attack machine to the jump point.
-5. Once you are connected to the jump point, switch to the directory that holds most of the logging information for the jump point.  
+`file * or from another directory file /var/log/*`
+5. Once you are connected to the jump point, switch to the directory that holds most of the logging information for the jump point.
+`in /var/log/secure look for entries related to:`
+`sshd accepted password`
+`sshd pam_unix(sshd:session): session opened`
+`sshd pam_unix(sshd:session): session closed`
+`in /var/log/messages check for instances of a hostname that matches the attack machine's IP address !Use grep to do so`  
 6. Identify all human readable logs in the current directory especially those that might contain SSH session entries.
+`sudo cat /var/log/secure | grep -v root > /var/log/secure`
+`sed '/sshd/d secure > /root/secure then`
 7. Run the commands that allow you to view SSH session related information in logs, whether they are in human or non-human readable format.
+'touch -t yyyymmddhhmm'
 8. Run the commands that will clean the relevant log files.
+`modify the time to a zer-byte file`
 9. Run the command that changes the time on the cleaned logs to match the last remaining entry.
+`it is important for a hacker to know how to blend in`
 10. What should you do if all of the logs entries need to be cleaned? Select one or more:
-a. Delete the entries
-b. Modify the time to a zero byte file
+`a. Delete the entries`
+`b. Modify the time to a zero byte file`
 c. Modify the time to match any other file in the folder
 d. Comment out the entries
 11. Explain why an attacker should adjust the time on a log that has been changed and discuss why an investigator should review logs for mismatching times.
@@ -1040,7 +1054,7 @@ d. Comment out the entries
 ### Part 2: Investigate a target remotely
 
 1. Which implant is typically preferred on a target system? Select one:
-  a. Callback
+  'a. Callback'
   b. Listener
   c. Payload
   d. Exploit
@@ -1062,4 +1076,311 @@ and their possible states:
   • established
 Select the above choices to make this statement true:
 To exploit a vulnerable service, the <> must be <> .
+
+___
+
+## Exercise Module 2, Lesson 9: Python Refresher
+
+___
+
+## Python History
+
+* 1989 — Python was created
+* 1991 - Python 1
+* 2000- Python 2
+  * Most applications still use Python 2
+  * Python 2 has features that are not forward compatible
+* End of life projected for 2020
+* 2008- Python 3
+
+### Why Python?
+
+* Popularity
+* Availability
+* Many benefits:
+  * Open source
+  * Easy to learn
+  * Easy to read
+  * Many modules are available
+  * Runs on multiple platforms
+  * Suitable for everyday tasks
+  * Web development
+  * Data science
+  * Machine learning
+  * Mine Twitter data
+  * Create games
+
+### What is Python?
+
+* Python is interpreted
+  * Similar to PERL and PHP
+  * No compiling is needed like in C or C++
+  * Python is processed at runtime by an interactive interpreter
+* Python is interactive
+  * Type straight into an interactive CLI Python interpreter
+* Python is Object-Oriented
+  * Python supports Object-Oriented programming that encapsulates code within an object
+
+### What is Python: Compiled vs Interpreted Languages
+
+* Compiler
+  * The scritp goes through a compiler like gcc
+* Binary
+  * The compiler compiles the code into binary for the machine to use
+* Interpreter
+  * The interpreter is an exeutable running on the machine and runs scripts written in an interpreted language
+![Compile vs. Interpreted](./Files/Images/Lesson9/compile-vs-interp.png)
+
+### Interactive Interpreter or REPL (Read Evaluate Print Loop)
+
+![RELP](./Files/Images/Lesson9/RELP.png)
+
+### Editors & Integrated Development Environments (IDES)
+
+Windows | Linux | OS X
+--- | --- | ---
+Notepad++ | Ninja-IDE | Xcode
+Visual Studio PyScripter | PyCharm | EditXT
+PyCharm | Gedit | PyCharm
+Atom | VIM | Pydev
+Emacs | Atom | TextMate
+IDLE | IDLE | IDLE
+
+### Variables: Creating
+
+* Variables are the basic building blocks in programming
+* Everything is seen as an object
+* Variables keep track of state
+* State: id, type, and value associated with the object  
+  ![Variables](./Files/Images/Lesson9/variables.png)
+
+### Variables: Naming Convention  
+
+* Pythonic code and Pythonistas
+* Do not use keywords as variable names!
+  * Results in a SyntaxError
+* Use an underscore to separate words
+* Do not start with numbers
+* Keep lowercase
+  ![Variables](./Files/Images/Lesson9/variables2.png)
+* Python will let you use built-ins as variables, but you should avoid using them.
+* Commonly Used Built-ln Functions
+
+    List1 | List2
+    --- | ---
+    dict | id
+    list | min
+    max | open
+    range | str
+    sum | type
+    ___
+
+  ![Variables](./Files/Images/Lesson9/variables3.png)
+
+* Fight the temptation to use these as variable names!
+
+### Variables: value
+
+* value: the data that the object holds
+  ![Variables](./Files/Images/Lesson9/variables4.png)
+
+### Variables: id
+
+* id: A unique ID for the object; its location in memory
+  ![Variables](./Files/Images/Lesson9/variables5.png)
+
+### Variables: type
+
+* type: the class of the object
+* Reveal an object's type by passing
+* Objects and Types
+
+Objects | Types
+--- | ---
+String | str
+Integer| int
+Floating Point | float
+List | list
+Dictionary | dict
+Tuple | tuple
+function | function
+type | type
+subclass of class | class
+Built-in function | builtin function or method
+
+### Writing and Reading
+
+```python
+ print ('Nobody likes you') #print will write to standard out
+Nobody likes you
+ 
+print ('We are', 2, 'wild and crazy guys' ) #print statement w/ strings and numbers
+We are 2 wild and crazy guys  
+
+print ('The' , 92, 'Dream Team')
+The 92 Dream Team  
+
+my_age = input ("What's my age again?" ) #waits for input and stores answer in variable my _age
+What' s my age again? 23 
+my_age
+'23'
+```
+
+  ![Variables](./Files/Images/Lesson9/variables6.png)
+
+### Mutability
+
+* Mutable
+  * Mutable objects can change their value; they can alter their state but their identity stays the same.
+  * Mutable Types:
+    * Dictionaries
+    * Lists
+* Immutable
+  * Imutable objects do not allow their value to be changed; once their value changes their ID changes as well
+  * Immutable Types:
+    * Strings
+    * Tuples
+    * Intergers
+    * Floats
+
+### Numbers
+
+  ![Variables](./Files/Images/Lesson9/numbers.png)
+  ![Variables](./Files/Images/Lesson9/numbers2.png)
+
+* Python follows the traditional **PEMDAS** order of operations.
+  ![Variables](./Files/Images/Lesson9/pedmdas.png)
+  ![Variables](./Files/Images/Lesson9/numbers3.png)
+
+### Strings
+
+* Strings are immutable objects that hold character data
+  * Could be a single character, word, paragraph, multiple paragraphs, even zero characters
+* Denoted by wrapping with:
+  * `'` (single quotes)
+  * `"` (double quotes)
+  * `"""` (triple doubles)
+    * Usually used as a docstring
+  * `'''` (triple singles)
+  ![Variables](./Files/Images/Lesson9/strings.png)
+
+### Strings: Escaping Characters
+
+Escape Sequence | Output
+--- | ---
+`\\`| Backslash
+`'` | Single quote
+`"` | Double quote
+`\b` | ASCII Backspace
+`\t` | Tab
+`u12af` | Unicode 16 bit
+`U12af89bc` | Unicode 32 bit
+`\N{SNAKE}` | Unicode character
+`\o84`| Octal character
+`xFF`| Hex character
+
+### Strings: Avoid Escaping with r
+
+* Have r precede a string to turn the string into a raw string.
+* This is usually done with regular expressions and in Windows paths where the backslash is the delimeter
+
+  ![Strings](./Files/Images/Lesson9/strings2.png)
+
+### Strings: Formatting Strings
+
+* Use the `.format` method
+  ![Strings](./Files/Images/Lesson9/strings3.png)
+
+### Strings: F-Strings
+
+* F-strings introduced in Python 3.6
+* Allow for the inclusion of code in placeholders
+  * Placeholders can contain function calls, method calls, or any arbitrary code
+* Potential for exploitation
+  * Reliance on input from outside of the original code
+![Strings](./Files/Images/Lesson9/strings4.png)
+
+### Strings and Methods
+
+* Because everything is seen as an object each of the objects have methods.
+* Invoking dir on an object will show the methods associated with the object.
+* STRINGMETHODS entry in the help section has documentation and examples
+![Strings](./Files/Images/Lesson9/strings5.png)
+![Strings](./Files/Images/Lesson9/strings6.png)
+
+### Strings and Methods: dir
+
+* dir() returns the attributes of objects
+![Strings](./Files/Images/Lesson9/strings7.png)
+
+### Strings and Methods: help
+
+* help() brings up Python's help utility
+![Strings](./Files/Images/Lesson9/strings8.png)
+
+* help() also provides documentation for a method, module, class or function.
+![Strings](./Files/Images/Lesson9/strings9.png)
+![Strings](./Files/Images/Lesson9/strings10.png)
+
+### pdb
+
+* Built-in Python debugger
+![PDB](./Files/Images/Lesson9/pdb.png)
+
+### Lists
+
+* Lists
+  * Mutable
+  * Holds a list of objects   May hold any type of item, but it's good practice to hold a single type of item
+  ![List](./Files/Images/Lesson9/list1.png)list1
+  ![List](./Files/Images/Lesson9/list2.png)list2
+* Use methods to modify lists
+  * e.g. .append, .remove, .sort
+  ![List](./Files/Images/Lesson9/list3.png)list ![List](./Files/Images/Lesson9/list4.png)
+
+### Tuples
+
+* Immutable
+* Cannot use .append or .remove methods
+* Elements are enclosed in parentheses
+* Boolean values
+  * An empty tupel is false
+  * Tuples with at leaset one itme are true
+![Tuple](./Files/Images/Lesson9/tuples.png)
+
+### Sets
+
+* Immutable
+* Unordered collection
+* Cannot contain duplicates
+* Does not care about order
+* Good for removing duplicates and checking membership
+  ![Sets](./Files/Images/Lesson9/set1.png)
+  ![Sets](./Files/Images/Lesson9/set1.png)
+
+### Dictionaries
+
+* Link a key to a value
+* Mutable
+* Do not copy the variable
+* Increase reference count to the variable
+  * A python dictionary contains one or more values known as keys (i.e. Baltimore), and each key is tied to a value (i.e. Ravens). Multiple key-value pairs can be stored in a dictionary
+  ![Dictionary](./Files/Images/Lesson9/dict1.png)
+* Manipulating dictionaries
+* No duplicate keys; assigning a value replaces the previous one
+![Dictionary](./Files/Images/Lesson9/dict2.png)
+
+___
+
+## Exercise - Module 2, Lesson 9 – Python Refresher I
+
+___
+
+[Module 2, Lesson 9 – Python Refresher I](./Scripts/Python/Mod2L9-Refresher1.py)
+
+
+
+
+
+
 
