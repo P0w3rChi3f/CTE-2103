@@ -1248,7 +1248,7 @@ my_age
   ![Variables](./Files/Images/Lesson9/numbers.png)
   ![Variables](./Files/Images/Lesson9/numbers2.png)
 
-* Python follows the traditional **PEMDAS** order of operations.
+* Python follows the traditional **PEMDAS** order of operations.  
   ![Variables](./Files/Images/Lesson9/pedmdas.png)
   ![Variables](./Files/Images/Lesson9/numbers3.png)
 
@@ -1261,7 +1261,7 @@ my_age
   * `"` (double quotes)
   * `"""` (triple doubles)
     * Usually used as a docstring
-  * `'''` (triple singles)
+  * `'''` (triple singles)  
   ![Variables](./Files/Images/Lesson9/strings.png)
 
 ### Strings: Escaping Characters
@@ -1297,7 +1297,7 @@ Escape Sequence | Output
 * Allow for the inclusion of code in placeholders
   * Placeholders can contain function calls, method calls, or any arbitrary code
 * Potential for exploitation
-  * Reliance on input from outside of the original code
+  * Reliance on input from outside of the original code  
 ![Strings](./Files/Images/Lesson9/strings4.png)
 
 ### Strings and Methods
@@ -1324,19 +1324,19 @@ Escape Sequence | Output
 
 ### pdb
 
-* Built-in Python debugger
+* Built-in Python debugger  
 ![PDB](./Files/Images/Lesson9/pdb.png)
 
 ### Lists
 
 * Lists
   * Mutable
-  * Holds a list of objects   May hold any type of item, but it's good practice to hold a single type of item
-  ![List](./Files/Images/Lesson9/list1.png)list1
-  ![List](./Files/Images/Lesson9/list2.png)list2
+  * Holds a list of objects   May hold any type of item, but it's good practice to hold a single type of item  
+  ![List](./Files/Images/Lesson9/list1.png)
+  ![List](./Files/Images/Lesson9/list2.png)
 * Use methods to modify lists
-  * e.g. .append, .remove, .sort
-  ![List](./Files/Images/Lesson9/list3.png)list ![List](./Files/Images/Lesson9/list4.png)
+  * e.g. .append, .remove, .sort  
+  ![List](./Files/Images/Lesson9/list3.png) ![List](./Files/Images/Lesson9/list4.png)
 
 ### Tuples
 
@@ -1345,7 +1345,7 @@ Escape Sequence | Output
 * Elements are enclosed in parentheses
 * Boolean values
   * An empty tupel is false
-  * Tuples with at leaset one itme are true
+  * Tuples with at leaset one itme are true  
 ![Tuple](./Files/Images/Lesson9/tuples.png)
 
 ### Sets
@@ -1354,7 +1354,7 @@ Escape Sequence | Output
 * Unordered collection
 * Cannot contain duplicates
 * Does not care about order
-* Good for removing duplicates and checking membership
+* Good for removing duplicates and checking membership  
   ![Sets](./Files/Images/Lesson9/set1.png)
   ![Sets](./Files/Images/Lesson9/set1.png)
 
@@ -1364,10 +1364,10 @@ Escape Sequence | Output
 * Mutable
 * Do not copy the variable
 * Increase reference count to the variable
-  * A python dictionary contains one or more values known as keys (i.e. Baltimore), and each key is tied to a value (i.e. Ravens). Multiple key-value pairs can be stored in a dictionary
+  * A python dictionary contains one or more values known as keys (i.e. Baltimore), and each key is tied to a value (i.e. Ravens). Multiple key-value pairs can be stored in a dictionary  
   ![Dictionary](./Files/Images/Lesson9/dict1.png)
 * Manipulating dictionaries
-* No duplicate keys; assigning a value replaces the previous one
+* No duplicate keys; assigning a value replaces the previous one  
   ![Dictionary](./Files/Images/Lesson9/dict2.png)
 
 ### Conditionals
@@ -1391,13 +1391,13 @@ Operator | Meaning | Example
 * Code Blocks
   * Denoted with a colon
   * Denoted with indentation
-  * Whitespace matters
+  * Whitespace matters  
   ![Conditionals](./Files/Images/Lesson9/conditionals.png)
 
 ### Iteratation
 
 * Being able to interate (repeat) through objects
-* __iter__()
+* `__iter__()`  
 ![Iterators](./Files/Images/Lesson9/iter1.png)
 ![Iterators](./Files/Images/Lesson9/iter2.png)
 
@@ -1418,13 +1418,13 @@ for house in houses:
 
 ### Iteration: in statement
 
-* The in statement can be used to check membership
+* The in statement can be used to check membership  
 ![Iterators](./Files/Images/Lesson9/iter4.png)
 
 ### Iteration: while statement
 
 * loops over block of code while condition holds
-* the condition can evaluate to True or False
+* the condition can evaluate to True or False  
 ![Iterators](./Files/Images/Lesson9/iter5.png)
 
 ### Iteration: break
@@ -1503,7 +1503,7 @@ ___
     * has **properties** (variables) and
     * can **perform actions** (functions)
   * In OOP vernacular, a "function" is called a **"method"**
-  * Each **object** is defined based off a **class**.
+  * Each **object** is defined based off a **class**.  
 ![Object](./Files/Images/Lesson10/obj1.png)
 * So what is a class?
   * A **class** is like a "blueprint" that outlines what the object is and does.
@@ -1519,29 +1519,29 @@ ___
   * You don't often see destructors in Python, but constructors are crucial.
   * All the properties necessary for the object are defined in the constructor.
 
-* What do these things look like?
+* What do these things look like?  
 ![Object](./Files/Images/Lesson10/obj2.png)
 
-* Be sure to include "self":
+* Be sure to include "self":  
 ![Object](./Files/Images/Lesson10/obj3.png)
 
-* This allows you to create variables local to the object.
+* This allows you to create variables local to the object.  
 ![Object](./Files/Images/Lesson10/obj4.png)
 
-* You can pass in arguments to these methods!
+* You can pass in arguments to these methods!  
 ![Object](./Files/Images/Lesson10/obj5.png)
 
 * Declare objects with the class & constructor parameters:
   * After the class is defined, you can create objects!
   * In the REPL, you can see the results right away.
-  * The benefit of OOP is encapsulating data and replicating it as needed.
+  * The benefit of OOP is encapsulating data and replicating it as needed.  
 ![Object](./Files/Images/Lesson10/obj6.png)
 
 * Create as many objects as you need.
-  * What's to stop you from making multiple classes or objects in a script?
+  * What's to stop you from making multiple classes or objects in a script?  
 ![Object](./Files/Images/Lesson10/obj7.png)
 
-* Everything in Python is an object
+* Everything in Python is an object  
 ![Object](./Files/Images/Lesson10/obj8.png)
 
 * OOP Reading Material & Resources
@@ -1558,10 +1558,10 @@ ___
 * "Syntactic sugar"
   * Often times you will need to make small changes to lots of data.
   * Typically, you would iterate through a loop and modify each value.
-  * Sometimes this makes for a lot of redundant code.
+  * Sometimes this makes for a lot of redundant code.  
 ![List](./Files/Images/Lesson10/list2.png)
 
-* Using list comprehension:
+* Using list comprehension:  
 ![List](./Files/Images/Lesson10/list3.png)
   * ***A list comprehension*** allows you to build out a list "on-the-fly", in one line!
   * The syntax is not difficult to wrap your mind around!
@@ -1569,22 +1569,22 @@ ___
 * Building out a list comprehension is easy:
   * Start with empty square braces:
   * Enter the syntax for a loop inside the square braces:
-  * Do whatever operations you want on the variable name you gave you iterator ***at the very front***
+  * Do whatever operations you want on the variable name you gave you iterator ***at the very front***  
   ![List](./Files/Images/Lesson10/list4.png)
 
 * It doesn't have to just be a list!
   * You can build out a set, or a tuple, or even a dictionary just as easily!
-  * When you use just parentheses, you build out a ***generator*** object
+  * When you use just parentheses, you build out a ***generator*** object  
 ![List](./Files/Images/Lesson10/list5.png)
 
 * And you can use conditionals inside the syntax.
   * If you only wanted to keep values that matched a certain criteria, you can even include an if statement inside of the comprehension syntax.
-  * This makes for super quick processing of data, in just one line.
+  * This makes for super quick processing of data, in just one line.  
 ![List](./Files/Images/Lesson10/list6.png)
 
 * Don't forget about dictionaries!
   * Dictionaries might be one of the most powerful data types Python has.
-  * The dictionary comprehension syntax is just as easy.. and you can still use the if statement conditionals!
+  * The dictionary comprehension syntax is just as easy.. and you can still use the if statement conditionals!  
 ![List](./Files/Images/Lesson10/list7.png)
 
 * Data comprehension reading material & resources
@@ -1612,11 +1612,11 @@ etc
     * Execute the command (a string) in a subshell. This is implemented by calling the Standard C function system ( ) , and has the same limitations. Changes to sys. stdin, etc. are not reflected in the environment of the executed command. If command generates any output, it will be sent to the interpreter standard output stream.
   * Any string you pass in as an argument will be ran as if you entered that  line on the command-line.
 
-* subprocess.call() & subprocess. Popen()
+* subprocess.call() & subprocess.Popen()  
 ![Function](./Files/Images/Lesson10/fun1.png)
-* You might think your code is innocent enough...
+* You might think your code is innocent enough...  
 ![Function](./Files/Images/Lesson10/fun2.png)
-* Be wary of unsanitized inputs
+* Be wary of unsanitized inputs  
 ![Function](./Files/Images/Lesson10/fun3.png)
 * Python eval()
   * eval(expression, globals=None, locals=None)
@@ -1626,9 +1626,9 @@ etc
   * exec(object[,globals[,locals]])
     * **This function supports dynamic execution of Python code.** object must be either a string or a code object. **If it is a string, the string is parsed as a suite of Python statements which is then executed (unless a syntax error occurs)**. **If it is a code object, it is simply executed.** In all cases, the code that's executed is expected to be valid as file input (see the section "File input' in the Reference Manual). Be aware that the `return` and `yield` statements may not be used outside of function definitions even within the context of code passed to the `exec()` function. The return value is None.
 * Both `exec` and `eval` allow access to run arbitrary **Python code**
-* Sometimes the eval function can be "convenient"...
+* Sometimes the eval function can be "convenient"...  
 ![Function](./Files/Images/Lesson10/fun4.png)
-* Again, completely trusted, but evil user input!
+* Again, completely trusted, but evil user input!  
 ![Function](./Files/Images/Lesson10/fun5.png)
 * Dangerous Functions Reading Material &
 Resources
@@ -1673,23 +1673,23 @@ Resources
 
 ![Files](./Files/Images/Lesson10/files1.png)
 
-* File handle objects must be closed when
+* File handle objects must be closed when  
 ![Files](./Files/Images/Lesson10/files2.png)
   * If you open() a handle, you must close() it (as seen in the last slide).
   * For cleaner code and better practice, use a ***context manager*** by using the ***with*** keyword.
-* File handle objects keep a certain kind of "cursor:"
+* File handle objects keep a certain kind of "cursor:"  
 ![Files](./Files/Images/Lesson10/files3.png)
-* If you do not use the context manager, you may trip up:
+* If you do not use the context manager, you may trip up:  
 ![Files](./Files/Images/Lesson10/files4.png)
 
-* You can loop through these functions as needed
+* You can loop through these functions as needed  
 ![Files](./Files/Images/Lesson10/files5.png)
 
-* When writing, you can still seek and tell just as before!
+* When writing, you can still seek and tell just as before!  
 ![Files](./Files/Images/Lesson10/files6.png)
 
 * The best practice is to just use a context manager.
-  * "Using a context manager" means using the with as ... syntax!
+  * "Using a context manager" means using the with as ... syntax!  
 ![Files](./Files/Images/Lesson10/files7.png)
 
 * File Handling Reading Material & Resources
@@ -1751,7 +1751,7 @@ ___
 useful code that you have written before
   * If you like to use a OOP design,
 it's best practice to save all your
-class definitions in other scripts... just like modules!
+class definitions in other scripts... just like modules!  
 ![Modules](./Files/Images/Lesson10/mods1.png)
 * Any Python script is already a module!
   * Remember, modules, just like scripts, end in a .py extension.
@@ -1759,28 +1759,28 @@ class definitions in other scripts... just like modules!
   * **Even all the scripts we write are *actually modules!***
 * What if you wanted to declare and execute code?
   * Your .py file can both declare things like functions & classes, and run code as well
-  * But if you imported this in another script, it would run all this test code!
+  * But if you imported this in another script, it would run all this test code!  
   ![Modules](./Files/Images/Lesson10/mods2.png)
 * The solution: the `__name__` value.
   * The way that Python understands if you are importing a module or not is by using another "magic" variable:`__name__`
   * `__name__` will be the string " main in an actively running script...
-![Modules](./Files/Images/Lesson10/mods3.png)
+![Modules](./Files/Images/Lesson10/mods3.png)  
 * Testing the value of `__name__` is important for modules!
   * To ensure that code doesn't run when you **"import"** the script as a module, test if this is the "main file".
   * This code makes your .py file dynamic; it can act as a module, and as an
-executable script.
+executable script.  
 ![Modules](./Files/Images/Lesson10/mods4.png)
 * The syntax to import a module:
-  * You can import a module and retain its **namespace**
+  * You can import a module and retain its **namespace**  
   ![Modules](./Files/Images/Lesson10/mods5.png)
-  * Or, you can import anything *within* the module, without retaining its namespace
+  * Or, you can import anything *within* the module, without retaining its namespace  
   ![Modules](./Files/Images/Lesson10/mods6.png)
   * Be warned; this overwrites!
 
 * You can "nickname" your imports:
-  * If you want a quick, shorthand name you can "**import os**" to give an alias to what you import
+  * If you want a quick, shorthand name you can "**import os**" to give an alias to what you import  
   ![Modules](./Files/Images/Lesson10/mods7.png)
-  * Also, when you use the "form" syntax, you don't have to import everything.  If ther are only one or a few function/variables you need, just import those
+  * Also, when you use the "form" syntax, you don't have to import everything.  If ther are only one or a few function/variables you need, just import those  
 ![Modules](./Files/Images/Lesson10/mods8.png)
 * Python Modules Reading Material & Resources
   * The example given thus far is only a primitive implementation of writing your own module.
@@ -1796,21 +1796,21 @@ executable script.
   * This module provides access to the BSD socket interface. It is available on all modern Unix systems, Windows, MacOS, and probably additional platforms.
   * The Python interface is a straightforward transliteration of the Unix system call and library interface for sockets to Python's object-oriented style: the `socket()` function returns a *socket object* whose methods implement the various socket system calls. Parameter types are somewhat higher-level than in the `C` interface: as with `read()` and `write()` operations on Python files, buffer allocation on receive operations is automatic, and buffer length is implicit on send operations.
 * We could access a remote service
-  * You normally connect to a socket with "nc" (netcat).
+  * You normally connect to a socket with "nc" (netcat).  
 ![Sockets](./Files/Images/Lesson10/sock1.png)
 
 * Often times it is interactive
-  * You will receive data from a socket, and you can send it data back!
+  * You will receive data from a socket, and you can send it data back!  
 ![Sockets](./Files/Images/Lesson10/sock2.png)
 
 * With netcat, this is a manual process
-  * You are interacting with a program, listening on a host at a certain port.
+  * You are interacting with a program, listening on a host at a certain port.  
 ![Sockets](./Files/Images/Lesson10/sock3.png)
 
 * But it doesn't have to be manual
   * Using Python and the socket module, you can automate this interaction
   * This can be incredibly handy when you
-need to send a lot of input to a program, or you want automation in your workflow
+need to send a lot of input to a program, or you want automation in your workflow  
 ![Sockets](./Files/Images/Lesson10/sock4.png)
 
 * socket can work with a lot of different connections
@@ -1824,20 +1824,20 @@ need to send a lot of input to a program, or you want automation in your workflo
   * Note that in this case, the server can
 only handle one connected client
   * The server must be threaded in order to accept() multiple connections
-The b in the very front of the string indicates that Python3 wants data sent back and forth from a socket to be transferred in bytes
+The b in the very front of the string indicates that Python3 wants data sent back and forth from a socket to be transferred in bytes  
 ![Sockets](./Files/Images/Lesson10/sock5.png)
 
-* Now you have a service to connect to!
+* Now you have a service to connect to!  
 ![Sockets](./Files/Images/Lesson10/sock6.png)
 
 * This is not the best implementation of a socket server
   * If you open up another connection (while you already have one running), you won't see the greeting come through on the client.
   * To build a quality socket server, you can use the socketserver module.
   * Mostly, you will see the socket module just used for client connections.
-* Connecting to a service is simple:
+* Connecting to a service is simple:  
 ![Sockets](./Files/Images/Lesson10/sock7.png)
 
-* Python3 sends socket data back and forth as bytes.
+* Python3 sends socket data back and forth as bytes.  
 ![Sockets](./Files/Images/Lesson10/sock8.png)
 
 * Reading material & resources for Python socket module
