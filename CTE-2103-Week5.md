@@ -1079,11 +1079,11 @@ To exploit a vulnerable service, the <> must be <> .
 
 ___
 
-## Exercise Module 2, Lesson 9: Python Refresher
+## Lesson -  Module 2, Lesson 9: Python Refresher
 
 ___
 
-## Python History
+### Python History
 
 * 1989 — Python was created
 * 1991 - Python 1
@@ -1133,7 +1133,7 @@ ___
 
 ### Interactive Interpreter or REPL (Read Evaluate Print Loop)
 
-![RELP](./Files/Images/Lesson9/RELP.png)
+![RELP](./Files/Images/Lesson9/relp.png)
 
 ### Editors & Integrated Development Environments (IDES)
 
