@@ -1824,7 +1824,7 @@ need to send a lot of input to a program, or you want automation in your workflo
   * Note that in this case, the server can
 only handle one connected client
   * The server must be threaded in order to accept() multiple connections
-The b in the very front of the string indicates that Python3 wants data sent back and forth from a socket to be transferred in bytes  
+  * The b in the very front of the string indicates that Python3 wants data sent back and forth from a socket to be transferred in bytes  
 ![Sockets](./Files/Images/Lesson10/sock5.png)
 
 * Now you have a service to connect to!  

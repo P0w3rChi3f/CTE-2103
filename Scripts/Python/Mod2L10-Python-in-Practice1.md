@@ -22,10 +22,12 @@ function 3
 ## Script 2
 
 ```python3
-# /usr/bin/ python3
+#!/usr/bin/ python3
 
-function 1
-function 2
+def main():
+
+def header():
+
 function 3
 
 ```
