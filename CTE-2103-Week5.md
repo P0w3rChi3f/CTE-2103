@@ -57,7 +57,7 @@ Network File System | NFS | TCP / UDP 2049, 111
 * Open a listening port on your Windows 7 VM
   * Don't forget to check your syntax  
     ![NetCat Listener](./Files/Images/NetCat-Listener.jpg)
-* Connect to Windows 7 VM from CentOS
+* Connect to Windows 7 VM from CentOS  
     ![NetCat Listener](./Files/Images/NetCat-Listener2.jpg)
 
 ### Using Netcat to Get a Remote Shell
