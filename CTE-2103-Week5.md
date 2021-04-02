@@ -1065,15 +1065,15 @@ d. Comment out the entries
   d. a persistent implant
 3. Why shouldn’t you use port 445 as the callback destination port?
 4. When considering the four ports:
-  • destination
-  • source
-  • ephemeral
-  • local
-and their possible states:
-  • open
-  • closed
-  • mode
-  • established
+    * destination
+    * source
+    * ephemeral
+    * local
+  and their possible states:
+    * open
+    * closed
+    * mode
+    * established
 Select the above choices to make this statement true:
 To exploit a vulnerable service, the <> must be <> .
 
@@ -1462,11 +1462,11 @@ for house in houses:
 
 * For additional information on and practice with using Python, explore the following suggested resources:
   * "Illustrated Guide to Python 3" by Matt Harrison
-  * Michael Kennedy https://blog.michaelckennedy.net/category/python/
+  * Michael Kennedy `https://blog.michaelckennedy.net/category/python/`
   * "Effective Python Penetration Testing" by Rejah Rehim
   * "Violent Python" by TJ. O'Connor
-  * Contributors to https://www.w3schools.com
-  * "Python Tricks The Book" by Dan Bader   https://python.org
+  * Contributors to `https://www.w3schools.com`
+  * "Python Tricks The Book" by Dan Bader   `https://python.org`
 
 ### Lesson 9 Summary
 
@@ -1484,13 +1484,389 @@ ___
 
 ___
 
-## Exercise - Module 2, Lesson 9 – Python Refresher I
+## Exercise - Module 2, Lesson 9 – Python Refresher II
 
 ___
 
 [Module 2, Lesson 9 – Python Refresher II](./Scripts/Python/Mod2L9-Refresher2.py)
 
+___
 
+## LESSON - Module 2 — Lesson 10: Python in Practice
 
+___
 
+### Object-Oriented Programming
 
+* Object Oriented Programming:
+  * An **object** is an abstract idea of an entity that:
+    * has **properties** (variables) and
+    * can **perform actions** (functions)
+  * In OOP vernacular, a "function" is called a **"method"**
+  * Each **object** is defined based off a **class**.
+![Object](./Files/Images/Lesson10/obj1.png)
+* So what is a class?
+  * A **class** is like a "blueprint" that outlines what the object is and does.
+    * Classes define an object's properties, methods, other objects it might resemble, how certain operators affect it, and more.
+  * Typically every class is defined with a **constructor**. (and sometimes, a **destructor!**)
+* Constructors and Destructors:
+
+  Constructor | Destructor
+  --- | ---
+  A mthod that runs immediately once the object is created | A method tht runs immediatly one the object is destroyed
+  ___
+
+  * You don't often see destructors in Python, but constructors are crucial.
+  * All the properties necessary for the object are defined in the constructor.
+
+* What do these things look like?
+![Object](./Files/Images/Lesson10/obj2.png)
+
+* Be sure to include "self":
+![Object](./Files/Images/Lesson10/obj3.png)
+
+* This allows you to create variables local to the object.
+![Object](./Files/Images/Lesson10/obj4.png)
+
+* You can pass in arguments to these methods!
+![Object](./Files/Images/Lesson10/obj5.png)
+
+* Declare objects with the class & constructor parameters:
+  * After the class is defined, you can create objects!
+  * In the REPL, you can see the results right away.
+  * The benefit of OOP is encapsulating data and replicating it as needed.
+![Object](./Files/Images/Lesson10/obj6.png)
+
+* Create as many objects as you need.
+  * What's to stop you from making multiple classes or objects in a script?
+![Object](./Files/Images/Lesson10/obj7.png)
+
+* Everything in Python is an object
+![Object](./Files/Images/Lesson10/obj8.png)
+
+* OOP Reading Material & Resources
+  * For a more in-depth explanation and other details regarding object-oriented programming in Python, check out the official documentation:  
+  
+`https://docs.python.org/3/tutorial/classes.html`
+
+### List Comprehension
+
+* Making things mor Pythonic...
+
+![List](./Files/Images/Lesson10/list1.png)
+
+* "Syntactic sugar"
+  * Often times you will need to make small changes to lots of data.
+  * Typically, you would iterate through a loop and modify each value.
+  * Sometimes this makes for a lot of redundant code.
+![List](./Files/Images/Lesson10/list2.png)
+
+* Using list comprehension:
+![List](./Files/Images/Lesson10/list3.png)
+  * ***A list comprehension*** allows you to build out a list "on-the-fly", in one line!
+  * The syntax is not difficult to wrap your mind around!
+
+* Building out a list comprehension is easy:
+  * Start with empty square braces:
+  * Enter the syntax for a loop inside the square braces:
+  * Do whatever operations you want on the variable name you gave you iterator ***at the very front***
+  ![List](./Files/Images/Lesson10/list4.png)
+
+* It doesn't have to just be a list!
+  * You can build out a set, or a tuple, or even a dictionary just as easily!
+  * When you use just parentheses, you build out a ***generator*** object
+![List](./Files/Images/Lesson10/list5.png)
+
+* And you can use conditionals inside the syntax.
+  * If you only wanted to keep values that matched a certain criteria, you can even include an if statement inside of the comprehension syntax.
+  * This makes for super quick processing of data, in just one line.
+![List](./Files/Images/Lesson10/list6.png)
+
+* Don't forget about dictionaries!
+  * Dictionaries might be one of the most powerful data types Python has.
+  * The dictionary comprehension syntax is just as easy.. and you can still use the if statement conditionals!
+![List](./Files/Images/Lesson10/list7.png)
+
+* Data comprehension reading material & resources
+  * For a more in-depth explanation and other details regarding list comprehension and its variants, check out the official documentation:
+
+`https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions`
+
+### Dangerous Functions
+
+* Dangerous functions
+  * There are a handful of Python functions that can be used maliciously.
+  * A good many of these come from Python modules, or libraries of code that were already written and can be imported into your project.
+
+System Command Execution | Built-in Python Code Execution | Other Python Code Execution
+--- | --- | ---
+os.system() | eval() | pickel.loads()
+os.spawn | exec() | cPickle.loads()
+os.popen | | jsonpickle.loads()
+subprocess.call() | | marshal.loads()
+subprocess.Popen()
+etc
+
+* os.system()
+  * os.system(command)
+    * Execute the command (a string) in a subshell. This is implemented by calling the Standard C function system ( ) , and has the same limitations. Changes to sys. stdin, etc. are not reflected in the environment of the executed command. If command generates any output, it will be sent to the interpreter standard output stream.
+  * Any string you pass in as an argument will be ran as if you entered that  line on the command-line.
+
+* subprocess.call() & subprocess. Popen()
+![Function](./Files/Images/Lesson10/fun1.png)
+* You might think your code is innocent enough...
+![Function](./Files/Images/Lesson10/fun2.png)
+* Be wary of unsanitized inputs
+![Function](./Files/Images/Lesson10/fun3.png)
+* Python eval()
+  * eval(expression, globals=None, locals=None)
+    * The arguments are a string and optional globals and locals. If provided, globals must be a dictionary. If provided, locals can be any mapping object.
+    * The expression argument is parsed and evaluated as a Python expression (technically speaking, a condition list) using the globals and locals dictionaries as global and local namespace. If the globals dictionary is present and does not contain a value for the key built ins , a reference to the dictionary of the built-in module builtins is inserted under that key before expression is parsed. This means that expression normally has full access to the standard builtins module and restricted environments are propagated. If the locals dictionary is omitted it defaults to the globals dictionary. If both dictionaries are omitted, the expression is executed in the environment where eval ( ) is called. The return value is the result of the evaluated expression. Syntax errors are reported as exceptions.
+* Python exec()
+  * exec(object[,globals[,locals]])
+    * **This function supports dynamic execution of Python code.** object must be either a string or a code object. **If it is a string, the string is parsed as a suite of Python statements which is then executed (unless a syntax error occurs)**. **If it is a code object, it is simply executed.** In all cases, the code that's executed is expected to be valid as file input (see the section "File input' in the Reference Manual). Be aware that the `return` and `yield` statements may not be used outside of function definitions even within the context of code passed to the `exec()` function. The return value is None.
+* Both `exec` and `eval` allow access to run arbitrary **Python code**
+* Sometimes the eval function can be "convenient"...
+![Function](./Files/Images/Lesson10/fun4.png)
+* Again, completely trusted, but evil user input!
+![Function](./Files/Images/Lesson10/fun5.png)
+* Dangerous Functions Reading Material &
+Resources
+  * Many of the excerpts in these slides came from the official Python documentation:
+* `https://docs.python.org/3/library/subprocess.html`
+* `https://docs.python.org/3/library/os.html`
+* `https://docs.python.org/3/library/pickle.html`
+* `https://docs.python.org/3/library/functions.html#eval`
+
+### File Handling
+
+* File Handling
+  * More often than not, you will want the ability to read and write to files.
+  * Since everything is an object in Python, this is very easy to do.
+  * All that is necessary is to "open" the file, and to do that you need to know
+  * The filename of the file you want to open
+  * The mode you want the file to be accessed with.
+* Filenames can use either absolute or relative paths.
+* You could specify the filename with:
+  * an ***absolute*** path
+    * includes the enitre path on the filesytem
+    * `/etc/passwd` starting from the root directory, including all subfolders, & the filename itself
+  * a ***relative*** path
+    * accesses the file relative to the scripts location
+    * If you were alread in the `/etc` folder, you would just include `the filename itself`
+* Open files in specific modes
+  * Additionally, files should be opened with a supplied mode.
+  * This means either "read," "write, "or "append", as well as "text" & "binary.'
+    * r - read mode. Allows read(), readlines()
+    * w - write mode. Allows write()
+      * Any previous content will be erased!
+    * a - append mode. Allows write()
+      * Previous content kept, new content added to the end.
+    * r+ - both read and write.
+    * b - binary mode.
+      * Used to handle files like JPG or EXE
+  * By default, files are opened in text mode. o You must supply the `b` flag if your files should be written with bytes.
+* The Syntax
+  * In Python, file handle objects are returned with the open() function
+  * The first argument is the filename, and the second is the mode.
+  * If the mode is not supplied, the default is read mode and text mode.
+
+![Files](./Files/Images/Lesson10/files1.png)
+
+* File handle objects must be closed when
+![Files](./Files/Images/Lesson10/files2.png)
+  * If you open() a handle, you must close() it (as seen in the last slide).
+  * For cleaner code and better practice, use a ***context manager*** by using the ***with*** keyword.
+* File handle objects keep a certain kind of "cursor:"
+![Files](./Files/Images/Lesson10/files3.png)
+* If you do not use the context manager, you may trip up:
+![Files](./Files/Images/Lesson10/files4.png)
+
+* You can loop through these functions as needed
+![Files](./Files/Images/Lesson10/files5.png)
+
+* When writing, you can still seek and tell just as before!
+![Files](./Files/Images/Lesson10/files6.png)
+
+* The best practice is to just use a context manager.
+  * "Using a context manager" means using the with as ... syntax!
+![Files](./Files/Images/Lesson10/files7.png)
+
+* File Handling Reading Material & Resources
+  * For a more in-depth explanation and other details regarding file handling, check out the official documentation:
+
+`https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files`
+
+### Introduction to Modules
+
+* Introducing Modules:
+  * Modules (also referred to as libraries) are the best part of Python.
+  * There are so many general-purpose modules that can do so many things.
+  * It is usually "plug and play" -- the modules work out of the box even when you install new ones... and Python comes with plenty of built-in libraries.
+* Python Built-in Libraries
+
+Library | Usage
+--- | ---
+string | Common string data & operations
+re | Regular Expression fuctionality
+difflib | Module for finding differences in data
+textwrap | Convenience functions for text
+readline | GNU readline interface
+datetime | Date and time functionality
+calendar | Calendar interface and features
+copy | Shallow and deep copy operations
+pprint | Functions to pretty print data
+math | Mathematical operations and values
+random | Pseudo-random number generation
+itertools | Permutation & compination loops
+operator | Standard operators as functions
+tempfile | Quick creation of temporary files
+glob | Unix-style pathname patter matching
+shutil | File operations like copy ad move
+pickle | Python object serialization
+sqlite3 | DB API for SQLite databases
+zipfile | Functions handling Zip archives
+csv | Reading and writing to CSV files
+hashlib | Secure hash and digest functions
+os | Operating system functionality
+time | Time access and timezone conversations
+getpass | Functionality to hide password input
+threading | multiprocessing with threads
+subprocessing | Subprocess management
+socket | Low-level networking interface
+email | Email handling functions
+base64 | Multilple base data encodings
+*This is less the 10% of the standard libraries*
+___
+
+* Where do we get these modules?
+  * When Python is told to import a module, it will look for the appropriately named .py file or .pyc file ("compiled" Python modules) in three places:
+    1. The directory containing the current scritp itself (or the current directory)
+    2. The $PYTHONPATH environment variable (list of direcotories to check)
+    3. The installation-dependent default library
+  * ***NOTE***
+    * Be warned! If you happen to name the Python script you are writing in, the same name as a module you are trying to import, your Python code will import itself.
+* You can always write your own modules.
+  * Modules let you save and store
+useful code that you have written before
+  * If you like to use a OOP design,
+it's best practice to save all your
+class definitions in other scripts... just like modules!
+![Modules](./Files/Images/Lesson10/mods1.png)
+* Any Python script is already a module!
+  * Remember, modules, just like scripts, end in a .py extension.
+  * Just like how all the data types used previously are actually objects...
+  * **Even all the scripts we write are *actually modules!***
+* What if you wanted to declare and execute code?
+  * Your .py file can both declare things like functions & classes, and run code as well
+  * But if you imported this in another script, it would run all this test code!
+  ![Modules](./Files/Images/Lesson10/mods2.png)
+* The solution: the `__name__` value.
+  * The way that Python understands if you are importing a module or not is by using another "magic" variable:`__name__`
+  * `__name__` will be the string " main in an actively running script...
+![Modules](./Files/Images/Lesson10/mods3.png)
+* Testing the value of `__name__` is important for modules!
+  * To ensure that code doesn't run when you **"import"** the script as a module, test if this is the "main file".
+  * This code makes your .py file dynamic; it can act as a module, and as an
+executable script.
+![Modules](./Files/Images/Lesson10/mods4.png)
+* The syntax to import a module:
+  * You can import a module and retain its **namespace**
+  ![Modules](./Files/Images/Lesson10/mods5.png)
+  * Or, you can import anything *within* the module, without retaining its namespace
+  ![Modules](./Files/Images/Lesson10/mods6.png)
+  * Be warned; this overwrites!
+
+* You can "nickname" your imports:
+  * If you want a quick, shorthand name you can "**import os**" to give an alias to what you import
+  ![Modules](./Files/Images/Lesson10/mods7.png)
+  * Also, when you use the "form" syntax, you don't have to import everything.  If ther are only one or a few function/variables you need, just import those
+![Modules](./Files/Images/Lesson10/mods8.png)
+* Python Modules Reading Material & Resources
+  * The example given thus far is only a primitive implementation of writing your own module.
+  * For a more in-depth explanation and other details regarding the import statement and what you can do with modules, check out the official documentation:
+  
+`https://docs.python.org/3/tutorial/modules.html`
+`https://docs.python.org/3/reference/simplestmts.html#import`
+
+## Socket Module
+
+* Enter the socket module!
+  * socket — Low-level networking interface
+  * This module provides access to the BSD socket interface. It is available on all modern Unix systems, Windows, MacOS, and probably additional platforms.
+  * The Python interface is a straightforward transliteration of the Unix system call and library interface for sockets to Python's object-oriented style: the `socket()` function returns a *socket object* whose methods implement the various socket system calls. Parameter types are somewhat higher-level than in the `C` interface: as with `read()` and `write()` operations on Python files, buffer allocation on receive operations is automatic, and buffer length is implicit on send operations.
+* We could access a remote service
+  * You normally connect to a socket with "nc" (netcat).
+![Sockets](./Files/Images/Lesson10/sock1.png)
+
+* Often times it is interactive
+  * You will receive data from a socket, and you can send it data back!
+![Sockets](./Files/Images/Lesson10/sock2.png)
+
+* With netcat, this is a manual process
+  * You are interacting with a program, listening on a host at a certain port.
+![Sockets](./Files/Images/Lesson10/sock3.png)
+
+* But it doesn't have to be manual
+  * Using Python and the socket module, you can automate this interaction
+  * This can be incredibly handy when you
+need to send a lot of input to a program, or you want automation in your workflow
+![Sockets](./Files/Images/Lesson10/sock4.png)
+
+* socket can work with a lot of different connections
+  * The socket module includes a handful of constants, that offer the functionality to work with different kinds of sockets:
+    * Network sockets, Linux sockets, the CAN bus protocol, and more
+  * `socket.socket(family=AF_INET, type=SOCK_STREAM, proto=O, fileno=None)`
+    * Create a new socket using the given address family, socket type and protocol number. The address family should be `AF_INET` (the default), `AF_INET6`, `AF_UNIX`, `AF_CAN`, `AF_PACKET`, or `AF_RDS`. The socket type should be `SOCK_STREAM` (the default), `SOCK_DGRAM`, `SOCK_RAW` or perhaps one of the other SOCK_constants. The protocol number is usually zero and may be omitted or in the case where the address family is `AF_CAN`, the protocol should be one of `CAN_RAW`, `CAN_BCM` or `CAN_ISOTP`.
+  * For our purposes, the defaults (AF_INET & SOCK_STREAM) work fine
+* Some common use cases: a socket server
+  * If we wanted to build the service that one connects to, we can do that with the socket module
+  * Note that in this case, the server can
+only handle one connected client
+  * The server must be threaded in order to accept() multiple connections
+The b in the very front of the string indicates that Python3 wants data sent back and forth from a socket to be transferred in bytes
+![Sockets](./Files/Images/Lesson10/sock5.png)
+
+* Now you have a service to connect to!
+![Sockets](./Files/Images/Lesson10/sock6.png)
+
+* This is not the best implementation of a socket server
+  * If you open up another connection (while you already have one running), you won't see the greeting come through on the client.
+  * To build a quality socket server, you can use the socketserver module.
+  * Mostly, you will see the socket module just used for client connections.
+* Connecting to a service is simple:
+![Sockets](./Files/Images/Lesson10/sock7.png)
+
+* Python3 sends socket data back and forth as bytes.
+![Sockets](./Files/Images/Lesson10/sock8.png)
+
+* Reading material & resources for Python socket module
+  * For a more in-depth explanation and other details regarding the Python socket module, check out the official documentation:
+
+`https://docs.python.org/3/library/socket.html`
+
+* ***Exploring module documentation is highly recommended.***
+
+* Lesson 10 Summary
+  * In this lesson we discussed:
+    * Object-Oriented Programming
+    * List Comprehension
+    * Dangerous Functions
+      * Exercise 1: Abusing Python 2 Input Functions
+    * File Handling
+    * Introduction to Modules (socket)
+      * Exercise 2: FTP Banner Grab
+
+___
+
+## Exercise - Module 2, Lesson 10 – Python in Practice I
+
+___
+
+[Python in Practice I Code](./Scripts/Python/Mod2L10-Python-in-Practice1.md)
+
+___
+
+## Exercise - Module 2, Lesson 10 – Python in Practice II
+
+___
