@@ -12,7 +12,7 @@ ___
 
 ___
 
-## Lesson - Module 2 — Lesson 1 1: Python Modules
+## Lesson - Module 2 — Lesson 11: Python Modules
 
 ### Lesson 11 Overview
 
@@ -398,7 +398,7 @@ ___
   * As CTE, we need to be able to find previous exploits or vulnerabilities.
   * Wouldn't it be handy to have a database of well-documented exploits?
 * Introduction to ExploitDB
-  * `https://exploit-db.com` maintains up-to-date and current records of known vulnerabilities and attack scripts.
+  * [Exploit DB](https://exploit-db.com) maintains up-to-date and current records of known vulnerabilities and attack scripts.
   * The project is owned and maintained by Offensive Security.
   * Their website allows you to search by
     * Type (Denial of Service, remote or local exploit, etc.)
@@ -628,6 +628,226 @@ sequences.
 
 ___
 
+## Lesson - Module 2 — Lesson 1 3: Fuzzing
+
+### Lesson 13 Overview
+
+* In this lesson we will discuss:
+  * Overflowing buffers
+    * Manually
+    * Simple Python scripts
+    * Fuzzers
+  * Developing your own fuzzer
+    * Create your own simple network fuzzer with Python
+    * Improve functionality and flexibility of your fuzzer
+  * Preparing to conduct buffer overflow exploits
+
+### Overflowing buffers
+
+* What is Fuzzing
+  * Automated testing
+  * "using malformed/semimalformed data injection"
+  * "random bad data"
+  * "see what breaks"  
+
+  ![Fuzzing](./Files/Images/Lesson13/fuzz1.png)
+
+* Fuzzing Goals
+  * Make stuff fall over...
+    * Systematically providing inputs with the goal of making bad things happen
+    * Looking for bad things:
+    * Crashes
+    * Hanging
+    * "Use-after-free" discovery
+    * Memory leaks
+    * Unexpected behavior
+* Why Fuzz?
+  * Black box testing
+    * Finds bugs in applications when you don't have the source code
+    * Most fuzzing is done in black box testing, but...
+  * White box testing
+    * Find bugs faster than just doing code review, cast wider net
+  * Automation
+    * Many aspects of fuzzing can be fully automated, freeing developers and analysts to focus on other aspects of the program/system
+* Basic Fuzzing Vectors
+  * Various attack vectors:
+    * Text/characters
+    * Numbers
+    * Binary data
+    * Metadata
+* Basic Fuzzing Vectors — Improved
+  * Known dangerous vectors:
+    * Integers: zero, negative numbers, and very large numbers
+    * Characters (chars): Escaped characters, interpretable (injection like attacks), odd symbols (É S?), or simply a large amount of characters
+    * Binary: random ones
+* OWASP Fuzz Vectors
+  * Recursive vs Replacive
+    * Recursive
+      * Sharing a trait with brute force, recursive fuzzing involves iterating through all possible combinationsof a valid character or alphabet
+      * e.g. Input: aaaa, Input: bbbb, Input: cccc, etc.
+    * Replacive
+      * Fuzzing by replacing a known input with new data. This new data could be pseudo random or it could be known attack vectors.
+      * e.g. SQL injection, LDAP injection, etc.
+* Fuzzing Categroies  
+![Fuzzing](./Files/Images/Lesson13/fuzz2.png)
+* Generation Fuzzing
+  * "Intelligent" or "smart" fuzzing
+  * Generates input from scratch
+  * Generates input based on user provided instructions
+  * Knowledge of the system/application/protocol
+* Mutation Fuzzing
+  * "Dumb fuzzers"
+  * Modifies existing (real) input
+  * Utilizes a corpus of seed input
+  * i.e. If the application inputs text, provide a large amount of valid text. If the application analyzes images, provide a library of valid images.
+* Other Types of Fuzzers
+![Fuzzing](./Files/Images/Lesson13/fuzz3.png)
+
+### Manually
+
+* Catching the Results
+  * Simply fuzzing isn't enough on its own, we need to monitor the  u Its :
+    * Monitor for exceptions
+      * One of the most common results from fuzzing are crashes and other exceptions
+  * Utilize debuggers
+    * Can hook a process and help pinpoint where an exception occurred
+  * Monitor responses
+    * Various methods ranging from watching the screen to advanced scripts and even hardware devices
+* Let's find a buffer overflow: Initial Setup
+  * Open your Lesson 13 environment which will include:
+    * Windows 7
+    * Kali Linux
+  * Take note of the IP address for each
+  * Ping each machine from the other to verify connectivity and firewall status
+    * This is a network based example, so firewalls need to be off.
+* Important Files and Directories
+  * On Windows 7 we will be working with a program called "Character Server" and debuggers, specifically Immunity (Optionally OllyDbg)  
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz1.png)
+* "Character Server"
+  * **SCENARIO**: You've discovered that your target is using a piece of software called "Character Server." You have obtained a copy of the executables and DLL's but not the source code. You are not able to identify any open source information about this application, its uses, or its vulnerabilities.
+  * **TASK**: Identify vulnerabilities through simple fuzzing.
+* What type of file is this anyways?
+  * Character Server is made up of 1 EXE file and 2 DLL files according to the directory. But it is often prudent to check the header info to be sure,  
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz2.png)
+* Setting up something to fuzz
+  * character server.exe:
+  * PE32 executable (console) Intel 80386, for MS Windows
+* Running the server to be tested
+  * Because it is a Windows console program, let's run it on our Windows box  
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz3.png)
+* Determining server network behavior
+  * Looks like the server is listening for connections on the network, let's see what port it is using.  
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz4.png)
+* What's happening on that port?
+  * Various tools to help you interrogate an open port
+    * Nmap
+    * Amap
+    * Netcat
+    * Many more...  
+
+  ![Manual Fuzzing](./Files/Images/Lesson13/manfuzz5.png)
+* Digging deeper with Amap
+  * Amap is an Application MAPper
+  * Deeper dive than some other tools  
+
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz6.png)
+* Let's connect and find more
+  * Using netcat we can establish a raw connection to this port/service  
+  ![Manual Fuzzing](./Files/Images/Lesson13/manfuzz7.png)
+  * Pretty obvious here isn't it? Type HELP  
+  ![Manual Fuzzing](./Files/Images/Lesson13/manfuzz8.png)
+* It accepts input
+  * Seems at least one of these commands accepts text input:  
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz9.png)
+* Can we overflow the buffer?
+  * Let's throw some characters in there and see...  
+  ![Manual Fuzzing](./Files/Images/Lesson13/manfuzz10.png)
+  * Let's check the server and see if we have any errors. Nope, let's try more...  
+  ![Manual Fuzzing](./Files/Images/Lesson13/manfuzz11.png)
+  * Okay, this is going to take a while.
+
+### Simple Python scripts
+
+* Python to the rescue
+  * We have the option of typing "random" characters for days, but let's use Python to automate the task for us.  
+
+  ![Python Fuzzer](./Files/Images/Lesson13/fuzzpy1.png)
+* Does it work?
+  * Let's run it against the application and see if anything falls over.
+![Python Fuzzer](./Files/Images/Lesson13/fuzzpy2.png)
+* We can definitely do it this time
+  * Let's increase the buffer size slightly.  
+![Python Fuzzer](./Files/Images/Lesson13/fuzzpy3.png)
+* It fell over
+  * Looks like 100 million A's will work  
+![Python Fuzzer](./Files/Images/Lesson13/fuzzpy4.png)
+* Catching the results, a better way
+  * We've seen a crash in Windows, now let's try a debugger (Immunity)
+  * Multiple ways to hook a process
+  * Drag and drop executable onto debugger icon
+  * Open debugger, then File > Open
+  * Open debugger, launch application, then File > Attach
+* Attaching or opening the process
+  * We decided to open the executable in Immunity with File > Open  
+![Python Fuzzer](./Files/Images/Lesson13/fuzzpy5.png)
+* Now, let's try again with the debugger
+  * Run the script again, and check the results in Immunity  
+![Python Fuzzer](./Files/Images/Lesson13/fuzzpy6.png)
+* Why'd we just do that?
+  * Goal of fuzzing?
+    * Make something fall over
+  * Crashes are only the first step
+  * Monitoring results is critical
+  * What's next?
+    * Turn crashes into exploits!
+
+### Fuzzers
+
+* An example of 3rd party fuzzer
+  * Sometimes, it's just easier/faster to use a 3rd party tool.
+  * SPIKE (one of those 3rd party fuzzers)
+    * Well known, poorly documented
+    * Scalable
+    * Allows custom C programming
+* SPIKE Commands
+  * SPIKE provides a framework for customized fuzzing scripts and commands to execute them. Here are some of those commands:
+    * generic_chunked
+    * generic_send_tcp
+    * generic_web_server_fuzz
+    * generic_listen_tcp
+    * generic_send_udp
+    * generic_web_server_fuzz2
+* SPIKE Scripts
+  * SPIKE scripts provide the framework for customized C code fuzzers  
+ ![Spike Fuzzer](./Files/Images/Lesson13/spike1.png)
+  * Example (simple) script:  
+  ![Spike Fuzzer](./Files/Images/Lesson13/spike2.png)
+* Capturing SPIKE Results
+  * SPIKE is a very fast fuzzer that sends tons of data. So how do we know if it worked?
+  * Capturing the data:
+    * Attach target process to debugger
+    * Open Wireshark and configure it to monitor all fuzzing attempts
+    * Try to step through (F 7) and see if EIP is corrupted  
+
+    ![Spike Fuzzer](./Files/Images/Lesson13/spike3.png)
+* Launching a script in SPIKE
+  * Once a script has been configured, launching it is straightforward.
+  * For our purposes we'll be utilizing generic_send_tcp:  
+
+  ![Spike Fuzzer](./Files/Images/Lesson13/spike4.png)
+
+### Lesson 13 Summary
+
+* In this lesson we will discuss:
+  * Overflowing buffers
+    * Manually
+    * Simple Python scripts
+    * Fuzzers
+  * Developing your own fuzzer
+    * Create your own simple network fuzzer with Python
+    * Improve functionality and flexibility of your fuzzer
+  * Preparing to conduct buffer overflow exploits
+
 ___
 
 ## Exercise - Module 2, Lesson 11 – Python Modules
@@ -639,5 +859,33 @@ ___
 ___
 
 ## Exercise - Module 2, Lesson 12 – Python and ExploitDB
+
+___
+
+<answer to be sumbitted>
+
+___
+
+## Exercise - Module 2, Lesson 13 – Simple Fuzzer
+
+___
+
+<answer to be sumbitted>
+
+___
+
+## Exercise - Module 2, Lesson 13 – SPIKE
+
+___
+
+<answer to be sumbitted>
+
+___
+
+## Exercise - Module 2, Lesson 13 – Intermediate Fuzzer
+
+___
+
+<answer to be sumbitted>
 
 ___
