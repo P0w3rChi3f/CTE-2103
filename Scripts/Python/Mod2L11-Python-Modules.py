@@ -85,6 +85,7 @@ for input in site.find_all('input'):
 # csrf = soup.find(attrs={"name":"csrf_token"})['value']
 # print(csrf)
 
+
 ####################################################################################
 
 # 8. The current page set a cookie (aside from your session ID). What is the name and value of this cookie?
@@ -99,7 +100,7 @@ for input in site.find_all('input'):
 # 9. Change the cookie value to become an admin user level and access the page once more. What does the header on the page say?
 
 
-s.cookies.update({'user_level':'admin'})
+s.cookies.update{'user_level':'admin'}
 
 ####################################################################################
 

