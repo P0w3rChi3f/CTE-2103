@@ -422,7 +422,7 @@ ___
   * But, because it is so ubiquitous and so powerful, it is common.
   * This script uses Python 2.
   * Your mileage may vary with these exploit scripts..
-  * **They may not always work!**
+  * **They may not always work!**  
 ![ExploitDB](./Files/Images/Lesson12/exploitdb5.png)
 * You may find Metasploit modules as well:
   * As you know, Metasploit is written in **Ruby**.
