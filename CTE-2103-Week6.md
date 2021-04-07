@@ -658,11 +658,11 @@ ___
   * Make stuff fall over...
     * Systematically providing inputs with the goal of making bad things happen
     * Looking for bad things:
-    * Crashes
-    * Hanging
-    * "Use-after-free" discovery
-    * Memory leaks
-    * Unexpected behavior
+      * Crashes
+      * Hanging
+      * "Use-after-free" discovery
+      * Memory leaks
+      * Unexpected behavior
 * Why Fuzz?
   * Black box testing
     * Finds bugs in applications when you don't have the source code
@@ -703,7 +703,8 @@ ___
   * Utilizes a corpus of seed input
   * i.e. If the application inputs text, provide a large amount of valid text. If the application analyzes images, provide a library of valid images.
 * Other Types of Fuzzers
-![Fuzzing](./Files/Images/Lesson13/fuzz3.png)
+![Fuzzing](./Files/Images/Lesson13/fuzz3.png)  
+  * [Grammer Based Test](https://www.veracode.com/blog/managing-appsec/how-does-grammar-based-test-case-generation-work)
 
 ### Manually
 
