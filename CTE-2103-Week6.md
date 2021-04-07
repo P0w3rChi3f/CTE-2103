@@ -14,6 +14,8 @@ ___
 
 ## Lesson - Module 2 — Lesson 11: Python Modules
 
+___
+
 ### Lesson 11 Overview
 
 * In this lesson we will discuss
@@ -848,6 +850,197 @@ ___
     * Create your own simple network fuzzer with Python
     * Improve functionality and flexibility of your fuzzer
   * Preparing to conduct buffer overflow exploits
+
+___
+
+## Lesson - Module 2 — Lesson 14: Buffer Overflow
+
+___
+
+### Lesson 14 Overview
+
+* In this lesson we will discuss:
+  * Buffer overflows
+    * Definition & identification
+    * Identifying vulnerabilities
+    * Developing buffer overflow exploits
+
+### Definition & identification
+
+* Definition of Buffer Overflow
+  * A buffer overflo happens when a more data is written to a fixed/static area of memory (buffer) than can be held in that area
+  * What happens?
+    * Somewhat unpredictable, but generally bad stuff occurs (for example, exceptions, crashes and denial of service)
+* Causes of Buffer Overflow
+  * Fixed size buffer
+  * Too much data
+* C Program in Memory
+  * Kernel
+  * Stack
+  * Heap
+  * Uninitialized Data
+  * Initialized Data
+  * Text  
+
+  ![Buffer Overflow Definition](./Files/Images/Lesson14/buffdef1.png)
+* Registers Overview
+  * Registers
+    * Registers are areas of storage, built in to the processor, that store values and instructions for the processor
+  * Common x86 Registers
+    * General: EAX, EBX, ECX, EDX
+    * Pointers and Indexes: EIP", ESP, EBP   Many others
+* Stack vs. Heap
+  * Stack
+    * Area of memory set aside for stati allocation
+    * Local Vvariables and return addresses are stored here, by functions
+    * Automatic allocation and deallocation
+    * Last In First Out (LIFO)
+    * Limited memory size
+  * Heap
+    * Area of memory set aside for dynamic allocation
+    * Must allocate and deallocate memory here
+    * Should be freed after use
+    * Allows unlimited memory size
+* Heap Overflow
+  * Two primary conditions/methods of exploitation of heaps:  
+
+  ![Buffer Overflow Definition](./Files/Images/Lesson14/buffdef2.png)
+* Stak Overflow
+  * Two methods of wverflowing the stack:
+    * Create large numbers of local variables until crash
+    * Allocate more memory than the stack can handle
+* Segmentation Faults
+  * Segmentation faults are caused when a program attempts to read/write to an illegal memory location.
+    * What could this mean for us?
+    * Stops payload execution
+    * Crashes/stops program
+  * So what can we do about segmentation faults?
+    * Primarily, we need to pinpoint target our payload. Either directly through EIP or indirectly through existing JMP calls in other areas of memory.
+
+### Identifying vulnerabilities
+
+* Detecting Overflow Vulnerabilities  Black Box Testing
+  * Both Stack and Heap overflows are very similar when it comes to black box testing (Are we black box testing?):
+    * Input more data (strings, integers, etc.) than the buffer can handle
+  * Differences:
+    * Stack overflows generally identify an instruction pointer structured exception handler
+    * Heap overflows often times appear as a pointer after the heap management routine
+* Exploiting Overflows - Heap
+  * Common heap exploitation:
+    * Use After Free
+      * Memory that is simply 'freed' still exists in memory. If the buffer is overflowed, an attacker may be able to utilize the data in the freed memory for exploitation.
+    * More advanced (older, but great read):
+      * [Understanding Heap Exploiting](http://www.mathyvanhoef.com/2013/02/understanding-heapexploiting-heap.html)
+* Exploiting Overflows - Stack
+  * Common Stack exploitation:  
+
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff1.png)
+* NOP Sleds/Slide/Ramp
+  * What exactly is a NOP Sled?
+    * Stacks can be randomized
+    * NOP Sled is a wide set of No-Operation instructions that eventually lead to the payload.
+    * Could prevent your shellcode from being overwritten, allowing execution.
+* Tools to Help Exploit Overflow
+  * Some tools that might help:
+    * Fuzzers, to help locate overflows
+    * Debuggers, to identify exact locations in memory
+    * !mona, because manual is hard
+    * Python, because manual may be the only way
+      * (or other inferior programming languages)
+    * msfvenom and other payloads and payload tools
+* Recommendations to Protect Against Buffer Overflow
+  * Code review (remove common vulnerabilities)
+    * Don't use: strcpy, strcat, sprintf, vsprintf
+    * Do use: canaries (terminator, random, XOR)
+    * Do use: bounds checking (input validation)
+  * Address space layout randomization (ASLR)
+    * Often implemented at the OS kernel level
+    * Can be bypassed, sometimes
+  * Data Execution Prevention
+    * Attemps to prevent execution from protected memory spaces
+* Let's Overflow a Simple Buffer
+  * We can try to expand upon our fuzzing from yesterday. Let's look at Character Server, specifically the "CLASS" command.
+  * Spoiler alert: It's vulnerable, but let's walk through the steps...  
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff2.png)
+  * Seems the CLASS command is looking for "warrior", "wizard", or "cleric"
+* Unexpected Input
+  * What happens if we throw some unexpected input (e.g. anything other than warrior, wizard, or cleric)? • Alternate text appears to set correctly  
+
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff3.png)
+* A Bit of Fuzzing
+  * We know CLASS is vulnerable, but we still have to find it.
+  * Lets use SPIKE  
+
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff4.png)
+* Wireshark
+  * Set up the capture to pick up all applicable traffic:  
+
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff5.png)
+* Debugger Time
+  * Let's load up Immunity again:  
+
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff6.png)
+* Fuzzing  
+![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff7.png)
+* Crash  
+![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff8.png)
+* Locate string  
+![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff9.png)
+* The string  
+![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff10.png)
+
+### Developing buffer overflow exploits
+
+* Create Proof of Concept  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff1.png)
+* Better POC  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff2.png)
+* Locate EIP through pattern  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff3.png)
+* The Pattern  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff4.png)
+* Patter integration  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff5.png)
+* Knock it over  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff6.png)
+* Match the pattern offset
+  * Identify the location of EIP by matching the pattern found in EIP with the pattern created earlier:  
+
+  ![Create Buffer Overflow](./Files/Images/Lesson14/createbuff7.png)
+* Update the POC  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff8.png)
+* Launch the POC  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff9.png)
+* Where toput the shellcode  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff10.png)
+* Find a way to ESP  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff11.png)
+* JMP ESP  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff12.png)
+* Check for bad Characters  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff13.png)  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff13b.png)
+* Generate payload  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff14.png)
+* Integrate payload into POC
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff15.png)
+* Set up a Listener  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff16.png)
+* Launch your POC!
+  * With or without the debugger
+  * Debugger may give us some interesting information though, specifically if the exploit were to fail  
+
+  ![Create Buffer Overflow](./Files/Images/Lesson14/createbuff17.png)
+* Success?  
+![Create Buffer Overflow](./Files/Images/Lesson14/createbuff18.png)
+
+### Lesson 14 Summary
+
+* In this lesson we will discuss:
+  * Buffer overflows
+    * Definition & identification
+    * Identifying vulnerabilities
+    * Developing buffer overflow exploits
 
 ___
 
