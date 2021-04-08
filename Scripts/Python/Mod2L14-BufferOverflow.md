@@ -10,7 +10,7 @@ HELP brings up a list of inputs
 
 ## 2. Fuzz the server for weaknesses in buffers
 
-[Simple Fuzzer Script](Scripts/Mod2L13-Simple-Fuzzer.md#actual-fuzzer-script)
+[Simple Fuzzer Script](../Mod2L13-Simple-Fuzzer.md#actual-fuzzer-script)
 
 ## 3. Develop a proof of concept exploit
 
