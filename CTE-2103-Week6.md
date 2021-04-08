@@ -1014,7 +1014,7 @@ ___
 ![Create Buffer Overflow](./Files/Images/Lesson14/createbuff8.png)
 * Launch the POC  
 ![Create Buffer Overflow](./Files/Images/Lesson14/createbuff9.png)
-* Where toput the shellcode  
+* Where to put the shellcode  
 ![Create Buffer Overflow](./Files/Images/Lesson14/createbuff10.png)
 * Find a way to ESP  
 ![Create Buffer Overflow](./Files/Images/Lesson14/createbuff11.png)
