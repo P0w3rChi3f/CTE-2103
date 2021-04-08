@@ -74,6 +74,8 @@ s_string_variable("A")
     * I changed it to point to CLASS and added 2 more zeros.
 5. CHALLENGE: The above steps were all covered in the presentation. Now, you must build a Python script that will systematically increase the number of characters sent to a command until the application crashes (i.e., It will send NICK AAAAA then NICK AAAAAAAAAA etc.). When the program crashes, you must be able to identify this. Also, note that the “NICK” command is just one of several vulnerable commands.
 
+## Actual Fuzzer Script
+
 ```python
 #! /usr/bin/env python3
 

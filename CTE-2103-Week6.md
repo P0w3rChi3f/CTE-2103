@@ -935,12 +935,14 @@ ___
 * Exploiting Overflows - Stack
   * Common Stack exploitation:  
 
-  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff1.png)
+  ![Identify a Buffer Overflow](./Files/Images/Lesson14/identbuff1.png)  
+  * [Stack Based Overflows: Detect & Exploit](https://www.sans.org/reading-room/whitepapers/testing/stack-based-overflows-detect-exploit-1986)
 * NOP Sleds/Slide/Ramp
   * What exactly is a NOP Sled?
     * Stacks can be randomized
     * NOP Sled is a wide set of No-Operation instructions that eventually lead to the payload.
     * Could prevent your shellcode from being overwritten, allowing execution.
+    * [How does a NOP sled work?](https://stackoverflow.com/questions/14760587/how-does-a-nop-sled-work)  
 * Tools to Help Exploit Overflow
   * Some tools that might help:
     * Fuzzers, to help locate overflows
@@ -1065,7 +1067,8 @@ ___
 
 ___
 
-<answer to be sumbitted>
+[Fuzzer Script](./Scripts/Python/fuzzer.py)
+[Exercise Questions and Answers](./Scripts/Mod2L13-Simple-Fuzzer.md)
 
 ___
 
@@ -1084,3 +1087,11 @@ ___
 <answer to be sumbitted>
 
 ___
+
+___
+
+## Exercise - Module 2, Lesson 14 – Buffer Overflow
+
+___
+
+<answer to be sumbitted>
