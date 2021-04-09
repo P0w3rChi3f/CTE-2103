@@ -15,3 +15,11 @@ Vulnscan (passive scann)
 privesc
 
 [Bind vs Reverse vs Encrypted Shells — Which Should You Use?](https://medium.com/@PenTest_duck/bind-vs-reverse-vs-encrypted-shells-what-should-you-use-6ead1d947aa9)
+
+
+# netdiscover
+
+nslookup
+server 192.168.229.144
+set q=txt
+foreverblue.com

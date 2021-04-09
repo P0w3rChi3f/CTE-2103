@@ -1,0 +1,79 @@
+Read in list of processes
+for each processes
+    get processes name, process status, process ram usage
+	    if process status equals stopped 
+	        highlight process name red
+	list process to screen
+
+##############################################
+2-1
+(Need a statement for on comming traffic)
+WHILE stopped
+    Look both ways for cross traffic
+	    If traffic is present 
+		    pause for 10 seconds
+			check for cross traffic
+		ELSE
+		    Release the brake
+			Turn left
+END
+
+#####################################################
+2-2
+Number = 0
+SumInput = 0
+WHILE number less than 6
+    
+    number + 1
+	userInput = prompt user for number "Please enter a number: "
+	display userInput
+	SumInput = SumInput + UserInput	
+END
+Display SumInput
+
+#########################################################
+2-3
+Read list until done
+Sort list alphabetically
+Group like items
+If Group equals "red"
+    Count individual items
+	Display Count
+ELSE
+    Count the Groups
+
+#############################################################
+2-4
+list installed processes
+for each process
+    If Process name matches "O? 'ŽrtñåÈ²$Ó"
+        Output "Malware has been discovered on this machine"
+	ELSE
+	    Output "Malware sample has not been discovered on this machine"
+		
+##############################################################
+2-5
+List files in download folder
+    WHILE files exist
+	    FileMD5 = MD5 hash the file
+		for each item in list of malware hashe
+		    If FileMD5 Hash matches item
+			    Output "A Malware Hash Matches FileMD5 and has been found on (read computer name)"
+			Else
+			    Output "No Match has been found on (read computer name)"
+    END
+	
+####################################################################################################
+
+Test Q22
+
+Read in list of processes
+loop through processes
+    Display Process Name
+    IF process is running
+        Display Amount of RAM
+    ELSE
+	    Display Not running message
+
+	
+	
